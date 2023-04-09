@@ -2,15 +2,19 @@
 <html>
 <script>
 	var audioFile = prompt("Please enter the URL of your audio file:", "");
-	
 	if ((audioFile == "") || (audioFile == null)){
 		alert("YOU MUST ENTER A URL OF A SOUND OR SOMETHING, OR ELSE THE PAGE WILL CLOSE!!")
 		audioFile = prompt("Please enter the URL of your audio file:")
 		if ((audioFile == "") || (audioFile == null)){
 		alert("You're a stupid idiot.")
-		window.close()
+		window.location.href = "https://64.media.tumblr.com/3417f3c6dd98a76115fd1ef353d5c7ba/d2e27152536c693f-26/s640x960/3e9ca73f0bb1dace98f49ea8c84e663281488534.jpg"
 		}
 	}
+	
+	 if (audioElement.readyState === 0) {
+		location.reload()
+	}
+  
 	console.log("--YouDiedProductions™ Musica Playeror---------------------")
 	console.log("|Hey there! You can also the music using the console!     |")
 	console.log("|Just type [ audio.src = 'https://example.com/sound.mp3' ]|")
@@ -19,6 +23,7 @@
 	console.log("-----------------------------------------------------------")
 </script>
 <head>
+	<link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
 	<title>YouDiedProductions™ Musica Playeror</title>
 	<meta charset="UTF-8">
 	<style>
@@ -145,7 +150,7 @@
 				audioFile = prompt("Please enter the URL of your audio file:")
 				if ((audioFile == "") || (audioFile == null)){
 					alert("You're a stupid idiot.")
-					window.close()
+					window.location.href = "https://64.media.tumblr.com/3417f3c6dd98a76115fd1ef353d5c7ba/d2e27152536c693f-26/s640x960/3e9ca73f0bb1dace98f49ea8c84e663281488534.jpg"
 				}
 			}
 			var player = document.getElementById("music")
