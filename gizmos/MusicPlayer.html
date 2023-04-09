@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<script>
+	var audioFile = prompt("Please enter the URL of your audio file:", "");
+	
+	if ((audioFile == "") || (audioFile == null)){
+		alert("YOU MUST ENTER A URL OF A SOUND OR SOMETHING, OR ELSE THE PAGE WILL CLOSE!!")
+		audioFile = prompt("Please enter the URL of your audio file:")
+		if ((audioFile == "") || (audioFile == null)){
+		alert("You're a stupid idiot.")
+		window.close()
+		}
+	}
+</script>
+<head>
+	<title>YouDiedProductions™ Musica Playeror</title>
+	<meta charset="UTF-8">
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+			text-align: center;
+			background-image: url('/fanze/assets/curse.jpeg');
+			background-size: 50vw 50vh;
+			background-position: center;
+			background-repeat: repeat;
+		}
+		
+		h1 {
+			margin-top: 50px;
+		}
+		
+		audio {
+			margin-top: 50px;
+		}
+		
+		input[type="range"] {
+			width: 70%;
+			margin-top: 20px;
+		}
+		
+		#time-info {
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1>YouDiedProductions™ Musica Playeror</h1>
+	totally not stolen from chatgpt<br>
+	If the music doesn't play, you are probably dumb enough to not link a valid audio file you cuntface.
+	<audio id="music" src="" ontimeupdate="updateTime()" autoplay>
+		Your browser does not support the audio element.
+	</audio>
+	<div>
+		<input type="range" id="seek-bar" value="0" min="0" step="1" oninput="seek()">
+	</div>
+	<div id="time-info">0:00 / 0:00</div>
+	<div>
+		<button onclick="play()">Play</button>
+		<button onclick="pause()">Pause</button>
+		<button onclick="stop()">Stop</button>
+		<button onclick="changeMusic()">Change Music</button>
+	</div>
+	<script>
+	var player = document.getElementById("music")
+	player.setAttribute('src',audioFile)
+	player.load();
+	player.onloadedmetadata = function() {
+	updateTime()
+	formatTime(player.duration)
+	document.getElementById("seek-bar").max = player.duration
+	}
+	</script>
+	<script>
+		var audio = document.getElementById("music");
+		var seekBar = document.getElementById("seek-bar");
+		var timeInfo = document.getElementById("time-info");
+		
+		function play() {
+			audio.play();
+			seekBar.value = audio.currentTime;
+		}
+		
+		function pause() {
+			audio.pause();
+		}
+		
+		function stop() {
+			audio.pause();
+			audio.currentTime = 0;
+		}
+		
+		
+		function seek() {
+			audio.currentTime = seekBar.value;
+		}
+		
+		function updateTime() {
+			var currentTime = formatTime(audio.currentTime);
+			var duration = formatTime(audio.duration);
+			timeInfo.innerHTML = currentTime + " / " + duration;
+			seekBar.value = audio.currentTime;
+		}
+		
+		function formatTime(time) {
+			var minutes = Math.floor(time / 60);
+			var seconds = Math.floor(time % 60);
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+			return minutes + ":" + seconds;
+		}
+		
+		function changeMusic() {
+			var audioFile = prompt("Please enter the URL of your audio file:", "");
+			if ((audioFile == "") || (audioFile == null)){
+				alert("YOU MUST ENTER A URL OF A SOUND OR SOMETHING, OR ELSE THE PAGE WILL CLOSE!!")
+				audioFile = prompt("Please enter the URL of your audio file:")
+				if ((audioFile == "") || (audioFile == null)){
+					alert("You're a stupid idiot.")
+					window.close()
+				}
+			}
+			var player = document.getElementById("music")
+			player.setAttribute('src',audioFile)
+			player.load();
+			audio.onloadedmetadata = function() {
+				updateTime()
+				formatTime(audio.duration)
+				document.getElementById("seek-bar").max = player.duration
+			}
+		}
+	</script>
+</body>
+</html>
