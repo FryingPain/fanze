@@ -10,11 +10,6 @@
 		window.location.href = "https://64.media.tumblr.com/3417f3c6dd98a76115fd1ef353d5c7ba/d2e27152536c693f-26/s640x960/3e9ca73f0bb1dace98f49ea8c84e663281488534.jpg"
 		}
 	}
-	
-	 if (audioElement.readyState === 0) {
-		location.reload()
-	}
-  
 	console.log("--YouDiedProductions™ Musica Playeror---------------------")
 	console.log("|Hey there! You can also the music using the console!     |")
 	console.log("|Just type [ audio.src = 'https://example.com/sound.mp3' ]|")
@@ -54,6 +49,7 @@
 			margin-top: 20px;
 		}
 	</style>
+	
 </head>
 <body>
 	<h1>YouDiedProductions™ Musica Playeror</h1>
@@ -81,6 +77,10 @@
 	updateTime()
 	formatTime(player.duration)
 	document.getElementById("seek-bar").max = player.duration
+	if (player.readyState === 0) {
+		location.reload()
+	}
+  
 	}
 	</script>
 	<script>
