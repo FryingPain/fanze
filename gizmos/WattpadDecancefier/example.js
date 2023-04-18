@@ -1,7 +1,7 @@
 const Wattpad = require('./src')
 const w = new Wattpad()
 
-w.Stories.read('1172507293').then(res => {
+w.Stories.read('1248667524').then(res => {
     console.log(res);
 })
 
