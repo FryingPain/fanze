@@ -42,8 +42,7 @@
 				var helloWorld = document.getElementById("hello-world");
 				helloWorld.textContent = "SPARTAREMIX";
 				document.title = "Sparta Remix";
-				document.getElementById('Sparta').innerHTML =
-            '<iframe width="1280" height="720" src="https://www.youtube.com/embed/mdAlMfGNUj0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+				document.getElementById('Sparta').innerHTML = '<iframe width="1280" height="720" src="https://www.youtube.com/embed/mdAlMfGNUj0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 			} else if (event.key === "f") {
 				if (confirm("Do you want to watch the FULL First Night Together comic?")) {
 					document.title = "FIRST NIGHT TOGETHER";
@@ -56,6 +55,11 @@
 				} else {
 					alert("Good for you buddo.");
 				}
+			} else if (event.key === "p") {
+				alert('Please allow up to 5 seconds to show you SUPER SWEETY SWEET FULL QUALITY The Owl House™ porn. ;)');
+				setTimeout(function() {
+				window.location.href = 'https://youtu.be/dQw4w9WgXcQ';
+				}, 5000);
 			}
 		});
 </script>
