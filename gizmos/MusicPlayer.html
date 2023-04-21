@@ -104,23 +104,8 @@
 		
 		function downloadFile() {
 		alert("Work in Progress.")
-			// Get the file URL from the HTML element
-			var fileUrl = document.getElementById("audioFile").value;
-
-			// Create a temporary link element
-			var link = document.createElement("a");
-			link.href = fileUrl;
-			link.download = fileUrl.split("/").pop(); // Set the download filename to the last part of the URL
-			link.style.display = "none"; // Hide the link element
-
-			// Add the link element to the HTML document
-			document.body.appendChild(link);
-
-			// Click the link to trigger the download
-			link.click();
-
-			// Remove the link element from the HTML document
-			document.body.removeChild(link);
+			var fileUrl = document.getElementById("audioFile");
+			window.location.href = fileUrl
 		}
 		
 		function seek() {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>darrel</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: white;
+			text-align: center;
+		}
+		video {
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>VVV | darrel | VVV</h1>
+	<h2>click to fuck</h2>
+	<img src="/fanze/assets/darrel.png" alt="Darrel" onclick="playVideo()">
+	<script>
+		function playVideo() {
+			alert("You are a fucking cuntface.");
+			document.body.innerHTML = '<video id="theVideo" src="/fanze/assets/darrel.mp4" autoplay></video>';
+		}
+		const video = document.getElementById("theVideo");
+		video.addEventListener("ended", function() {
+			window.location.href = "https://pbs.twimg.com/media/E5ZmcBJUUAQIig6.jpg:large";
+		});
+	</script>
+</body>
+</html>
