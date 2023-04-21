@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
+	<title>Hello World!</title>
+</head>
+<body>
+    <h1 id="hello-world">Hello World!</h1>
+	<!-- Videos Area -->
+	
+	<video id="StoryDelight" style="display: none;" controls autoplay loop>
+		<source src="/fanze/assets/storydelight.mp4" type="video/mp4">
+	</video>
+	<img id="Marcy" src="" alt="">
+	<div id="Sparta"></div>
+	<video style="display: none;" id="JUMPSCARE" class="video" src="/fanze/assets/FirstNightTogether.mp4"></video>
+	
+	<!-- End of Videos Area -->
+	
+		<script>
+		document.addEventListener("keydown", function(event) {
+			if (event.key === "e") {
+				alert('UGGGH! This the last time i have that- HNNGGH! "Burrito" from the Human World...');
+				document.body.style.backgroundColor = "#7a5901";
+				document.title = "StoryDelight";
+				var helloWorld = document.getElementById("hello-world");
+				helloWorld.textContent = "StoryDelight";
+				setTimeout(function() {
+					alert("You piece of shit of Eda. Look what you have done.");
+					document.getElementById("StoryDelight").style.display = "block";
+					document.getElementById("StoryDelight").play();
+				}, 500);
+			} else if (event.key === "m") {
+				var helloWorld = document.getElementById("hello-world");
+				helloWorld.textContent = "Marcy is fire tbh";
+				var gif = document.getElementById('Marcy');
+				gif.src = 'https://media.tenor.com/msr9KJLjhQwAAAAC/marcy-wu-amphibia.gif';
+				var audio = new Audio('https://www.e2s.com/system/1/assets/files/000/000/395/395/631e82dc8/original/TF026.WAV');
+				audio.play();
+				audio.loop = true;
+			} else if (event.key === "s") {
+				var helloWorld = document.getElementById("hello-world");
+				helloWorld.textContent = "SPARTAREMIX";
+				document.title = "Sparta Remix";
+				document.getElementById('Sparta').innerHTML =
+            '<iframe width="1280" height="720" src="https://www.youtube.com/embed/mdAlMfGNUj0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+			} else if (event.key === "f") {
+				if (confirm("Do you want to watch the FULL First Night Together comic?")) {
+					document.title = "FIRST NIGHT TOGETHER";
+					var helloWorld = document.getElementById("hello-world");
+					helloWorld.textContent = "FIRST NIGHT TOGETHER";
+					helloWorld.style.color = "#ff0000";
+					document.body.style.backgroundColor = "#000000";
+					document.getElementById("JUMPSCARE").style.display = "block";
+					document.getElementById("JUMPSCARE").play();
+				} else {
+					alert("Good for you buddo.");
+				}
+			}
+		});
+</script>
+</body>
+</html>
