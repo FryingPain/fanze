@@ -22,12 +22,11 @@
 	<script>
 		function playVideo() {
 			alert("You are a fucking cuntface.");
-			document.body.innerHTML = '<video id="theVideo" src="/fanze/assets/darrel.mp4" autoplay></video>';
+			document.body.innerHTML = '<video id="theVideo" src="/fanze/assets/darrel.mp4" ended="redirect()" autoplay></video>';
 		}
-		const video = document.getElementById("theVideo");
-		video.addEventListener("ended", function() {
+		function redirect() {
 			window.location.href = "https://pbs.twimg.com/media/E5ZmcBJUUAQIig6.jpg:large";
-		});
+		}
 	</script>
 </body>
 </html>
