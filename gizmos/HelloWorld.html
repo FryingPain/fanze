@@ -11,6 +11,9 @@
 	<video id="StoryDelight" style="display: none;" controls loop>
 		<source src="/fanze/assets/storydelight.mp4" type="video/mp4">
 	</video>
+	<video id="Peridot" style="display: none;" controls loop>
+		<source src="/fanze/assets/peridot.mp4" type="video/mp4">
+	</video>
 	<img id="Marcy" src="" alt="">
 	<div id="Sparta"></div>
 	<video style="display: none;" id="JUMPSCARE" class="video" src="/fanze/assets/FirstNightTogether.mp4"></video>
@@ -102,7 +105,11 @@
 						}, 30000);
 					}, 30000);
 				}, 2000);
-			}
+			} else if (event.key === "l") {
+				alert('A kind message to this world. Signed Fry.');
+				document.title = "BASED PERIDOT";
+				document.getElementById("Peridot").style.display = "block";
+				document.getElementById("Peridot").play();
 		});
 </script>
 </body>
