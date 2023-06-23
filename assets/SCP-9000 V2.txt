@@ -1,0 +1,55 @@
+Item #: SCP-9000
+
+Object Class: Euclid
+
+Special Containment Procedures:
+Due to the widespread nature of SCP-9000 and its manifestation within the entire Steven Universe (SU) fandom, containment measures are focused on minimizing its effects and raising awareness about cyberbullying. Foundation web monitoring teams are to monitor online platforms for instances of SCP-9000 and take appropriate action to prevent harassment and harmful behavior.
+
+Foundation agents are to actively engage with online communities associated with SU, posing as regular users and promoting positive behavior while discouraging cyberbullying.
+The Foundation's Media Manipulation Division is to collaborate with social media platforms to promote anti-cyberbullying campaigns targeted at SU fandom members.
+Disinformation campaigns will be initiated to divert attention from potential victims, disseminating false information about their works or activities.
+Therapy and counseling programs are to be provided to individuals affected by SCP-9000 to mitigate the psychological distress caused by cyberbullying.
+Description:
+SCP-9000 refers to an unexplained phenomenon that affects a select percentage of individuals who frequently engage with the Steven Universe animated series or participate in the Steven Universe fandom. Approximately 10% of such individuals will eventually display aggressive and hostile behavior towards others online.
+
+The initial manifestations of SCP-9000 involve individuals aggressively criticizing fan artworks related to Steven Universe, often targeting amateur artists for perceived flaws in their drawings, such as inaccurate character proportions. As individuals continue to engage with the Steven Universe fandom or consume media related to the series, their aggression escalates, leading to attacks on more established artists for minor errors or oversights, down to the level of individual pixels.
+
+Victims of SCP-9000 exhibit an additional anomalous effect. There is a 20% chance that an artist being targeted by SCP-9000-induced harassment will engage in self-harming behaviors, while a 10% chance of those individuals resorting to suicide due to the psychological distress caused by the online harassment. It should be noted that these effects can be mitigated through therapy and counseling; however, if the affected individual resumes watching Steven Universe or participating in fan art creation, the anomalous behavior and associated risks may resurface.
+
+The origin and cause of SCP-9000 remain unknown, as it is exclusive to the Steven Universe fandom and does not occur within other fandoms. Research is ongoing to determine the underlying factors responsible for the emergence of SCP-9000.
+
+Addendum 9000-1: Incident Log
+The following is a selection of notable incidents involving SCP-9000:
+
+Incident 9000-01
+Description: A prominent artist known for their Steven Universe fanart, ████, received multiple aggressive comments on their latest artwork, criticizing minute details and claiming it was poorly drawn.
+Outcome: ████ publicly expressed distress regarding the criticism and later engaged in self-harming behavior. Foundation operatives intervened, providing counseling and therapy. They have not reported any further instances of SCP-9000 since the incident.
+
+Incident 9000-05
+Description: Online artist ██████, known for their professional illustrations, experienced a surge in aggressive comments on their social media platforms, primarily targeting their Steven Universe-related artworks. Criticisms focused on minor errors, such as missing pixels or color discrepancies.
+Outcome: ██████ displayed signs of severe distress, culminating in a suicide attempt. Immediate medical intervention prevented fatality, and the artist has since received therapy. They have reported no further instances of SCP-9000.
+
+Addendum 9000-2: Investigation Log
+Excerpt from Interview 9000-12:
+
+Interviewed: Dr. ████████
+
+Interviewer: Agent ███████
+
+Foreword: Dr. ████████ is a psychologist specializing in anomalous behavior patterns. The purpose of the interview was to gather insights regarding the psychological effects and potential causes of SCP-9000.
+Begin Log
+
+Agent ███████: Dr. ████████, can you provide any explanation for the selective targeting of the Steven Universe fandom by SCP-9000?
+
+Dr. ████████: The exact cause of SCP-9000 is still unknown. However, it is evident that the fandom's highly passionate and devoted nature may play a role in the phenomenon. Steven Universe, with its emotionally-driven narrative, tends to create strong connections between the series and its fans. This deep emotional investment could amplify both positive and negative behaviors associated with the fandom.
+
+Agent ███████: Is there any known way to prevent or cure the effects of SCP-9000?
+
+Dr. ████████: While complete prevention is challenging due to the widespread nature of the SCP, raising awareness about cyberbullying and providing therapy to affected individuals can significantly reduce its impact. Therapy helps victims develop coping mechanisms and build resilience against the psychological distress caused by cyberbullying.
+
+Agent ███████: Thank you, Dr. ████████. We will continue to implement measures to mitigate the effects of SCP-9000.
+
+End Log
+
+Closing Statement:
+SCP-9000 remains a significant concern due to its potential psychological impact on individuals within the Steven Universe fandom. Ongoing research and containment efforts are focused on understanding the origin of SCP-9000 and developing effective countermeasures to alleviate its effects. Public awareness campaigns and psychological support for affected individuals are critical in managing the potential harm caused by this anomalous phenomenon.
