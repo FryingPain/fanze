@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
+  <title>SCP-1243</title>
+  <style>
+    body {
+      background-color: rgb(0, 0, 0);
+    }
+    #image {
+      text-align: center;
+    }
+    #elements {
+      margin-top: 20px;
+      margin-left: 20px;
+      color: white;
+    }
+    input[type="text"] {
+      width: 200px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="image">
+    <img src="/fanze/assets/relocation.jpg" alt="Website Image">
+  </div>
+  <div id="elements">
+    <div>
+      Name: <input type="text" id="nameInput" oninput="updateCost()">
+    </div>
+    <div>
+      Cost: <span id="costDisplay">-</span>
+    </div>
+    <div>
+      <button onclick="placeOrder()">Place Order</button>
+    </div>
+    <div>
+      Customers served: <span id="counter">9000</span>
+    </div>
+  </div>
+
+  <script>
+    var counter = 9000;
+    var cost = 0;
+
+    function updateCost() {
+      var name = document.getElementById("nameInput").value;
+      cost = calculateCost(name);
+      document.getElementById("costDisplay").textContent = cost;
+    }
+
+    function calculateCost(name) {
+      return name.length * 10; // Increase cost based on the number of characters in the name
+    }
+
+    function incrementCounter() {
+      counter++;
+      document.getElementById("counter").textContent = counter;
+    }
+
+    setInterval(incrementCounter, 3000); // Increment counter every 3 seconds
+
+    function placeOrder() {
+      incrementCounter();
+      alert("Anomalous properties triggered!");
+    }
+  </script>
+</body>
+</html>

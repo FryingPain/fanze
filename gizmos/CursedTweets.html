@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
+  <title>Cursed Tweets</title>
+  <script src="https://platform.twitter.com/widgets.js" async></script>
+  <style>
+    .tweet-container {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>FryingPain's Cursed Tweet Randomizer!</h1>
+  <p>Welcome to FPCTR. The title explains it all. I'll be going around on twitter and i'll add tweets i deem cursed to the list.</p>
+  <br>
+  <p>All of the generated tweets are from a personalized list, and it can't find random tweets.</p>
+  <button onclick="loadRandomTweet()">Load Random Tweet</button>
+  <div id="tweet-container"></div>
+  <script>
+    window.addEventListener("load", function() {
+		localStorage.removeItem("disclaimerAccepted");
+	});
+    var tweets = [
+      "1655771857172197376",
+      "1655745972473851909",
+      "1655729423797178374",
+	  "1656225754433179648",
+	  "1656439260822769665",
+	  "1655605366598557697",
+	  "1665183048491728896",
+	  "1556628110769922051",
+	  "1670847171577495574",
+	  "1643871391924776961",
+	  "1618631536609488896",
+	  "1672811886381789184",
+	  "1659005212634279937",
+	  "1663723245831585792",
+	  "1645141448986116098",
+	  "1655319687029313537",
+	  "1631151498183970816",
+      // Add more tweet IDs to the list
+    ];
+
+	function displayDisclaimer() {
+		return confirm("WARNING:\nSome tweet origins are explicit. example: Steven Universe.\n\nContinue?");
+	}
+
+    function loadRandomTweet() {
+	var disclaimerAccepted = localStorage.getItem("disclaimerAccepted");
+	if (!disclaimerAccepted) {
+		if (displayDisclaimer()) {
+			localStorage.setItem("disclaimerAccepted", "true");
+		} else {
+			return; // Do not proceed if the user doesn't agree
+		}
+	}
+      var container = document.getElementById("tweet-container");
+      container.innerHTML = "";
+
+      var randomIndex = Math.floor(Math.random() * tweets.length);
+      var tweetId = tweets[randomIndex];
+
+      var tweetDiv = document.createElement("div");
+      tweetDiv.className = "tweet-container";
+      tweetDiv.setAttribute("data-tweet-id", tweetId);
+      container.appendChild(tweetDiv);
+
+      twttr.widgets.createTweet(
+        tweetId,
+        tweetDiv,
+        { align: "center" }
+      );
+    }
+  </script>
+</body>
+</html>
