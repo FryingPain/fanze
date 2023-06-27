@@ -23,6 +23,7 @@
 		<script>
 		
 		function animateText() {
+		document.title = ""
       fetch('/fanze/assets/lore.txt') // Replace 'path/to/text.txt' with the actual path to your text file
         .then(response => response.text())
         .then(text => {
@@ -30,7 +31,7 @@
           var index = 0;
 
           var interval = setInterval(function() {
-            document.getElementById("displayText").innerHTML += words[index] + " ";
+            document.title += words[index] + " ";
             index++;
 
             if (index >= words.length) {
