@@ -21,6 +21,25 @@
 	<!-- End of Videos Area -->
 	
 		<script>
+		
+		function animateText() {
+      fetch('/fanze/assets/lore.txt') // Replace 'path/to/text.txt' with the actual path to your text file
+        .then(response => response.text())
+        .then(text => {
+          var words = text.split(" ");
+          var index = 0;
+
+          var interval = setInterval(function() {
+            document.getElementById("displayText").innerHTML += words[index] + " ";
+            index++;
+
+            if (index >= words.length) {
+              clearInterval(interval);
+            }
+          }, 100);
+        });
+    }
+		
 		document.addEventListener("keydown", function(event) {
 			if (event.key === "e") {
 				alert('UGGGH! This the last time i have that- HNNGGH! "Burrito" from the Human World...');
@@ -110,6 +129,10 @@
 				document.title = "BASED PERIDOT";
 				document.getElementById("Peridot").style.display = "block";
 				document.getElementById("Peridot").play();
+			} else if (event.key === "r") {
+				var ring = new Audio('/fanze/assets/ringside.mp3');
+				ring.play();
+				animateText();
 			}
 		});
 </script>
