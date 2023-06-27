@@ -23,15 +23,15 @@
 		<script>
 		
 		function animateText() {
-		document.title = ""
-      fetch('/fanze/assets/lore.txt') // Replace 'path/to/text.txt' with the actual path to your text file
+		document.getElementById("hello-world").textContent = ""
+      fetch('https://fryingpanwastaken.github.io/fanze/assets/lore.txt') // Replace 'path/to/text.txt' with the actual path to your text file
         .then(response => response.text())
         .then(text => {
           var words = text.split(" ");
           var index = 0;
 
           var interval = setInterval(function() {
-            document.title += words[index] + " ";
+            document.getElementById("hello-world").textContent += words[index] + " ";
             index++;
 
             if (index >= words.length) {
@@ -131,7 +131,7 @@
 				document.getElementById("Peridot").style.display = "block";
 				document.getElementById("Peridot").play();
 			} else if (event.key === "r") {
-				var ring = new Audio('/fanze/assets/ringside.mp3');
+				var ring = new Audio('https://fryingpanwastaken.github.io/fanze/assets/ringside.mp3');
 				ring.play();
 				animateText();
 			}
