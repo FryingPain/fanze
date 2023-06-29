@@ -99,6 +99,18 @@
     <source src="/fanze/assets/tumadrelagorda.mp3" type="audio/mp3">
 </audio>
 
+<audio id="puerta1" preload="auto">
+    <source src="/fanze/assets/puerta1.mp3" type="audio/mp3">
+</audio>
+
+<audio id="puerta2" preload="auto">
+    <source src="/fanze/assets/puerta2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="nota" preload="auto">
+    <source src="/fanze/assets/nota.mp3" type="audio/mp3">
+</audio>
+
 <div id="d1">
 <img src="http://www.lomando.com/pimg/osfusuma1.jpg"id="fusumaleft">
 <img src="http://www.lomando.com/pimg/osfusuma2.jpg"id="fusumaright">
@@ -150,12 +162,17 @@ let fps2 = document.getElementById('fps2');
 let seopenfusuma = document.getElementById('openfusumase');
 let gameover = document.getElementById('gameover');
 let seghost = document.getElementById('ghostse');
+let puerta1 = document.getElementById('puerta1');
+let puerta2 = document.getElementById('puerta2');
+let nota = document.getElementById('nota');
 
 /*ふすま遠目******************************************************/
 //ふすま左をクリックした場合
 fusumaleft.addEventListener('mouseover',function(){fusumaleft.style.cursor = 'pointer';});
 fusumaleft.addEventListener('mouseout',function(){fusumaleft.style.cursor = 'default';});
 fusumaleft.addEventListener('click',function(){
+	puerta1.load();
+    puerta1.play();
     fusumaleft.style.display = 'none';
     fusumaright.style.display = 'none';
     fr100.style.display = 'inline';
@@ -166,6 +183,8 @@ fusumaleft.addEventListener('click',function(){
 fusumaright.addEventListener('mouseover',function(){fusumaright.style.cursor = 'pointer';});
 fusumaright.addEventListener('mouseout',function(){fusumaright.style.cursor = 'default';});
 fusumaright.addEventListener('click',function(){
+	puerta2.load();
+    puerta2.play();
     fusumaleft.style.display = 'none';
     fusumaright.style.display = 'none';
     fl100.style.display = 'inline';
@@ -178,6 +197,8 @@ fr100.addEventListener('mouseout',function(){fr100.style.cursor = 'default';});
 fr100.addEventListener('click',function(){
     seopenfusuma.load();
     seopenfusuma.play();
+	nota.load();
+    nota.play();
     fps1 = 0;
     let timerId1 = setInterval(function(){
         switch(fps1){
