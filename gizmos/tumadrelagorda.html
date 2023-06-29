@@ -111,6 +111,11 @@
     <source src="/fanze/assets/nota.mp3" type="audio/mp3">
 </audio>
 
+<audio id="2648" preload="auto">
+    <source src="/fanze/assets/2648.mp3" type="audio/mp3">
+</audio>
+
+
 <div id="d1">
 <img src="http://www.lomando.com/pimg/osfusuma1.jpg"id="fusumaleft">
 <img src="http://www.lomando.com/pimg/osfusuma2.jpg"id="fusumaright">
@@ -165,6 +170,7 @@ let seghost = document.getElementById('ghostse');
 let puerta1 = document.getElementById('puerta1');
 let puerta2 = document.getElementById('puerta2');
 let nota = document.getElementById('nota');
+let twosixfoureight = document.getElementById('2648');
 
 /*ふすま遠目******************************************************/
 //ふすま左をクリックした場合
@@ -285,6 +291,8 @@ memo1.addEventListener('click',function(){
     oshiireleft.style.display = 'none';
     memo1.style.display = 'none';
     memo2.style.display = 'inline';
+	twosixfoureight.load();
+    twosixfoureight.play();
 ;});
 memo2.addEventListener('mouseover',function(){memo2.style.cursor = 'pointer';});
 memo2.addEventListener('mouseout',function(){memo2.style.cursor = 'default';});
