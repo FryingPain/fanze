@@ -103,9 +103,13 @@
 		}
 		
 		function downloadFile() {
-		alert("Work in Progress.")
-			var fileUrl = document.getElementById("audioFile");
-			window.location.href = fileUrl
+			var audioElement = document.getElementById('music'); // Replace 'myAudio' with the ID of your <audio> element
+			var sourceUrl = audioElement.src;
+			var downloadLink = document.createElement('a');
+			downloadLink.href = sourceUrl;
+			downloadLink.download = 'audio.mp3'; // Replace 'audio.mp3' with the desired filename
+      
+			downloadLink.click();
 		}
 		
 		function seek() {
