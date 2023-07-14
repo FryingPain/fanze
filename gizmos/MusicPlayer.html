@@ -107,9 +107,14 @@
 			var sourceUrl = audioElement.src;
 			var downloadLink = document.createElement('a');
 			downloadLink.href = sourceUrl;
-			downloadLink.download = 'audio.mp3'; // Replace 'audio.mp3' with the desired filename
+			downloadLink.download = getFilenameFromUrl(sourceUrl);
       
 			downloadLink.click();
+		}
+		
+		function getFilenameFromUrl(url) {
+			const lastSlashIndex = url.lastIndexOf("/");
+			return url.substring(lastSlashIndex + 1);
 		}
 		
 		function seek() {
