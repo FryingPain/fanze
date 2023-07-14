@@ -3,12 +3,7 @@
 <script>
 	var audioFile = prompt("Please enter the URL of your audio file:", "");
 	if ((audioFile == "") || (audioFile == null)){
-		alert("YOU MUST ENTER A URL OF A SOUND OR SOMETHING, OR ELSE THE PAGE WILL CLOSE!!")
-		audioFile = prompt("Please enter the URL of your audio file:")
-		if ((audioFile == "") || (audioFile == null)){
-		alert("You're a stupid idiot.")
-		window.location.href = "https://youtu.be/hqyENZG95-o"
-		}
+		alert("No audio file selected. Normally i would send you to a werewolf Luz transformation video, but not now. You need to input the URL or upload a file later on though.")
 	}
 	console.log("--YouDiedProductions™ Musica Playeror---------------------")
 	console.log("|Hey there! You can also the music using the console!     |")
@@ -68,6 +63,15 @@
 		<button onclick="stop()">Stop</button>
 		<button onclick="changeMusic()">Change Music</button>
 		<button onclick="downloadFile()">Download File</button>
+		<label class="switch">
+            <input type="checkbox" id="loop-toggle" onchange="toggleLoop()">
+            <span class="slider"></span>
+        </label>
+        <span id="loop-label">Loop</span>
+	</div>
+	<div>
+		<p>or... upload your own!</p>
+		<input type="file" id="file-input" accept="audio/*" onchange="playSelectedFile()">
 	</div>
 	<script>
 	var player = document.getElementById("music")
@@ -87,6 +91,7 @@
 		var audio = document.getElementById("music");
 		var seekBar = document.getElementById("seek-bar");
 		var timeInfo = document.getElementById("time-info");
+		var loopToggle = document.getElementById("loop-toggle");
 		
 		function play() {
 			audio.play();
@@ -140,12 +145,7 @@
 		function changeMusic() {
 			var audioFile = prompt("Please enter the URL of your audio file:", "");
 			if ((audioFile == "") || (audioFile == null)){
-				alert("YOU MUST ENTER A URL OF A SOUND OR SOMETHING, OR ELSE THE PAGE WILL CLOSE!!")
-				audioFile = prompt("Please enter the URL of your audio file:")
-				if ((audioFile == "") || (audioFile == null)){
-					alert("You're a stupid idiot.")
-					window.location.href = "https://youtu.be/hqyENZG95-o"
-				}
+				alert("No audio file selected. Normally i would send you to a werewolf Luz transformation video, but not now.")
 			}
 			var player = document.getElementById("music")
 			player.setAttribute('src',audioFile)
@@ -156,6 +156,30 @@
 				document.getElementById("seek-bar").max = player.duration
 			}
 		}
+		
+		function playSelectedFile() {
+			var fileInput = document.getElementById('file-input');
+			var file = fileInput.files[0];
+      
+			if (file) {
+				var reader = new FileReader();
+				reader.onload = function(event) {
+				audio.src = event.target.result;
+				audio.load();
+				audio.play();
+				updateTime();
+				formatTime(audio.duration);
+				seekBar.max = audio.duration;
+			};
+			reader.readAsDataURL(file);
+			}
+		
+		}
+		
+		function toggleLoop() {
+			audio.loop = loopToggle.checked;
+		}
+		
 	</script>
 </body>
 </html>
