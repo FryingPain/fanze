@@ -1,17 +1,5 @@
 <!DOCTYPE html>
 <html>
-<script>
-	var audioFile = prompt("Please enter the URL of your audio file:", "");
-	if ((audioFile == "") || (audioFile == null)){
-		alert("No audio file selected. Normally i would send you to a werewolf Luz transformation video, but not now. You need to input the URL or upload a file later on though.")
-	}
-	console.log("--YouDiedProductions™ Musica Playeror---------------------")
-	console.log("|Hey there! You can also the music using the console!     |")
-	console.log("|Just type [ audio.src = 'https://example.com/sound.mp3' ]|")
-	console.log("|and voila! Why wasting time on typing this command tho?  |")
-	console.log("|Well, i ask the same. Have fun!                          |")
-	console.log("-----------------------------------------------------------")
-</script>
 <head>
 	<link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
 	<title>YouDiedProductions™ Musica Playeror</title>
@@ -21,7 +9,6 @@
 			background-color: #f2f2f2;
 			font-family: Arial, sans-serif;
 			text-align: center;
-			background-image: url('/fanze/assets/remix-4ef1522b-4a2a-4fdc-ab62-8f9f1bfeee4f.png');
 			background-size: 50vw 50vh;
 			background-position: center;
 			background-repeat: repeat;
@@ -146,6 +133,7 @@
 			var audioFile = prompt("Please enter the URL of your audio file:", "");
 			if ((audioFile == "") || (audioFile == null)){
 				alert("No audio file selected. Normally i would send you to a werewolf Luz transformation video, but not now.")
+				alert("You are still a stupid idiot btw")
 			}
 			var player = document.getElementById("music")
 			player.setAttribute('src',audioFile)
@@ -182,4 +170,26 @@
 		
 	</script>
 </body>
+<script>
+        var userResponse = confirm("Attention...\nThe background photo is very smelly xD\nwould ya like to remove it for the current session?");
+
+        if (userResponse === true) {
+            document.body.style.backgroundImage = "none";
+        } else {
+            document.body.style.backgroundImage = "url('/fanze/assets/remix-4ef1522b-4a2a-4fdc-ab62-8f9f1bfeee4f.png')";
+        }
+    </script>
+	<script>
+	var audioFile = prompt("Please enter the URL of your audio file:", "");
+	if ((audioFile == "") || (audioFile == null)){
+		alert("No audio file selected. Normally i would send you to a werewolf Luz transformation video, but not now. You need to input the URL or upload a file later on though.")
+		alert("You are still a stupid idiot btw")
+	}
+	console.log("--YouDiedProductions™ Musica Playeror---------------------")
+	console.log("|Hey there! You can also the music using the console!     |")
+	console.log("|Just type [ audio.src = 'https://example.com/sound.mp3' ]|")
+	console.log("|and voila! Why wasting time on typing this command tho?  |")
+	console.log("|Well, i ask the same. Have fun!                          |")
+	console.log("-----------------------------------------------------------")
+</script>
 </html>
