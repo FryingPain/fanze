@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatroom</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    
+    .topbar {
+      background-color: #f5f5f5;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .topbar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    .chatbox {
+      background-color: #fff;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+      border: 1px solid #ddd;
+      padding: 20px;
+    }
+    
+    .chatbox p {
+      margin: 10px 0;
+    }
+    
+    .chatbox .user {
+      color: #000000;
+    }
+    
+    .chatbox .character {
+      color: #007bff;
+    }
+    
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+    
+    .input-container input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    
+    .input-container button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <img src="https://characterai.io/i/400/static/avatars/uploaded/2022/10/26/vjWoC9WMXHREOASS2S9zqsGX06UxmroBDWUxTgYMp4w.webp" alt="Character Icon">
+    <span>Lapis Lazuli</span>
+  </div>
+
+  <div class="chatbox" id="chatbox">
+    <p class="character">Lapis: Hi, I'm Lapis. Lapis Lazuli</p>
+  </div>
+
+  <div class="input-container">
+    <input type="text" id="message-input" placeholder="Type your message" onkeydown="handleKeyPress(event)">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    var user = ""
+	
+	user = prompt("As you don't have a profile I don't know your name!\n\nPlease enter your name...")
+	if ((user == "") || (user == null)){
+		alert("YOU MUST ENTER YOUR NAME. IF YOU DON'T THEN YOUR NAME WILL BE 'STUPID IDIOT'")
+		user = prompt("Please enter your name...")
+	}
+	if ((user == "") || (user == null)){
+		alert("Your name is stupid idiot")
+		user = "Stupid Idiot"
+	}
+ 
+    var messages = [
+	"Lapis: Hello",
+	"Lapis: How are you?",
+	"Lapis: You seem tired",
+	"Lapis: Want to go to my house?",
+	"Lapis: You seem like a good person.",
+	"*3 months later*",
+	"Lapis: Hey.... um....",
+	"Lapis: I'm pregnant!",
+	""
+	];
+    var currentIndex = 0;
+
+    function sendMessage() {
+      var userInput = document.getElementById("message-input").value;
+      var chatbox = document.getElementById("chatbox");
+
+      if (userInput.trim() !== "") {
+        var userMessage = document.createElement("p");
+        userMessage.classList.add("user");
+        userMessage.textContent = user + ": " + userInput;
+        chatbox.appendChild(userMessage);
+      }
+
+      var characterMessage = document.createElement("p");
+      characterMessage.classList.add("character");
+      characterMessage.textContent = messages[currentIndex];
+
+      chatbox.appendChild(characterMessage);
+
+      currentIndex++;
+
+      if (currentIndex === messages.length) {
+        alert("You're done.\n\nGod damn it.");
+        window.location.href = "https://youtu.be/MbU4fPYRvcY";
+      }
+
+      document.getElementById("message-input").value = "";
+    }
+		
+	function handleKeyPress(event) {
+		if (event.keyCode === 13) {
+			sendMessage();
+		}
+	}
+	
+  </script>
+</body>
+</html>
