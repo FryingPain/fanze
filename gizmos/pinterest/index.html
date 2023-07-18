@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pinterest</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+    
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+      margin-top: 80px;
+      padding: 20px;
+    }
+    
+    .grid-item {
+      position: relative;
+    }
+    
+    .grid-item img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+	
+	  .saving-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: #000;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+	
+  </style>
+</head>
+<body>
+  <img src="/fanze/gizmos/pinterest/logo.png" alt="Logo" class="logo">
+
+  <div class="grid-container">
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/1.png" alt="Image 1" onclick="saveImage(1)" style="width:256px; height:256px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/2.png" alt="Image 2" onclick="saveImage(2)" style="width:400px; height:250px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/3.png" alt="Image 3" onclick="saveImage(3)" style="width:180px; height:300px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/4.png" alt="Image 4" onclick="saveImage(4)" style="width:400px; height:370px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/5.png" alt="Image 5" onclick="saveImage(5)" style="width:180px; height:300px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/6.png" alt="Image 6" onclick="saveImage(6)" style="width:180px; height:300px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/7.png" alt="Image 7" onclick="saveImage(7)" style="width:180px; height:200px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/8.png" alt="Image 8" onclick="saveImage(8)" style="width:180px; height:300px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/9.png" alt="Image 9" onclick="saveImage(9)" style="width:180px; height:300px;">
+    </div>
+    <div class="grid-item">
+      <img src="/fanze/gizmos/pinterest/10.png" alt="Image 10" onclick="saveImage(10)" style="width:400px; height:250px;">
+    </div>
+  </div>
+
+  <script>
+    var collection = [];
+    
+    function saveImage(imageNumber) {
+      if (collection.length < 5) {
+        var imageElement = document.querySelector(`[alt="Image ${imageNumber}"]`);
+    var textElement = document.createElement("p");
+    textElement.textContent = "Saving";
+    textElement.style.position = "absolute";
+    textElement.style.top = "50%";
+    textElement.style.left = "50%";
+    textElement.style.transform = "translate(-50%, -50%)";
+    textElement.style.fontSize = "24px";
+    textElement.style.fontWeight = "bold";
+    textElement.style.color = "white";
+    textElement.style.background = "rgba(0, 0, 0, 0.8)";
+    textElement.style.padding = "10px";
+    textElement.style.borderRadius = "10px";
+    textElement.style.transition = "opacity 0.5s";
+    textElement.style.opacity = 0;
+
+    imageElement.parentNode.appendChild(textElement);
+    
+    var audio1 = new Audio("/fanze/gizmos/pinterest/button_click_5.mp3");
+    var audio2 = new Audio("/fanze/gizmos/pinterest/success_2.mp3");
+    
+    audio1.play();
+    textElement.style.opacity = 1;
+    
+    setTimeout(function() {
+      audio2.play();
+      textElement.textContent = "Saved successfully";
+      
+      setTimeout(function() {
+        textElement.style.opacity = 0;
+        setTimeout(function() {
+          textElement.parentNode.removeChild(textElement);
+        }, 500);
+      }, 2000);
+    }, 1500);
+    
+    collection.push(imageNumber);
+        
+        if (collection.length === 5) {
+          alert("You've been banned for saving too much crap lol");
+          window.location.href = "/fanze/gizmos/pinterest/banned.html";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
