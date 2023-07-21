@@ -53,9 +53,18 @@
     .bottom-left-text {
 	  color: gold;
       position: absolute;
-      bottom: 10px;
+      bottom: 60px;
       left: 30px;
       font-size: 30px;
+    }
+	
+	.bottom-left-ad {
+	  color: gold;
+      position: absolute;
+      bottom: 10px;
+      left: 30px;
+      font-size: 24px;
+	  text-align: left;
     }
 	
 	.plr {
@@ -103,7 +112,7 @@
   </div>
     <p class="gold-text">character.ai is full</p>
     <p class="estimated">Estimated time: Xm</p>
-	
+	<div id="countdown-timer" style="color: gold; margin: 10px 0;">Reconnecting in 20 seconds...</div>
 	<div class="plr">
 	<div class="text-container">
     <img src="https://crafatar.com/avatars/835169b0-29d6-41e5-90dc-a9c2c71fedc2" alt="Image">
@@ -117,7 +126,7 @@
 	
   <p class="middle-text">Estimated time: Xm</p>	
   <p class="bottom-left-text">Estimated time: Xm</p>
- 
+  <p class="bottom-left-ad">You can purchase priority queue status to join character.ai<br>faster, visit <b>plus.character.ai</b></p>
  <script>
     // Get the ?time parameter from the URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -137,9 +146,19 @@
 	const bottomLeftText = document.getElementsByClassName('bottom-left-text')[0];
 	bottomLeftText.textContent = bottomLeftText.textContent.replace('X', timeParam);
 	
-	setInterval(function() {
-      window.location.href = "https://beta.character.ai";
-    }, 20000); // 20000 milliseconds = 20 seconds
+	var countdownSeconds = 20;
+    var countdownElement = document.getElementById("countdown-timer");
+
+    function updateCountdown() {
+      countdownSeconds--;
+      countdownElement.textContent = "Reconnecting in " + countdownSeconds + " seconds...";
+
+      if (countdownSeconds <= 0) {
+        window.location.href = "https://beta.character.ai";
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
   </script>
  
 </body>
