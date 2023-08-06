@@ -7,7 +7,7 @@
   <h1>Life Checker</h1>
   <p>Welcome to Life Checker<br>Ever wondered if someone in Roblox ever had a life?<br>Well, now with Life Checker, you can check if that person has a life!<br>Just put in their name, and we'll check if they have a life.</p>
   <p>Hope this website helps you in your daily tasks.</p>
-  <label for="inputField">Enter your text:</label>
+  <label for="inputField">Enter username:</label>
   <input type="text" id="inputField" placeholder="Username">
 
   <button onclick="postData()">Submit</button>
@@ -20,24 +20,40 @@
       const inputValue = inputField.value;
 
       try {
-        const response = await fetch("https://users.roblox.com/v1/usernames/users", {
-		method: "POST",
-        headers: {
+        const apiUrl = "https://cors-anywhere.herokuapp.com/https://users.roblox.com/v1/usernames/users";
+        const requestData = {
+          "usernames": [inputValue],
+          "excludeBannedUsers": true
+        };
+
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
             "Content-Type": "application/json"
-        },
-		"usernames": "Panterakawaii",
-		"excludeBannedUsers": true
+          },
+          body: JSON.stringify(requestData)
         });
 
         const responseData = await response.json();
+        const userId = responseData.data[0].id; // Get the "id" value from the response
+
+        // Fetch data from the badges API
+        const badgesApiUrl = `https://cors-anywhere.herokuapp.com/https://badges.roblox.com/v1/users/${userId}/badges/awarded-dates?badgeIds=2124697480`;
+        const badgesResponse = await fetch(badgesApiUrl);
+        const badgesData = await badgesResponse.json();
 
         // Display the response data in the paragraph
-        const responseParagraph = document.getElementById("response");
-        responseParagraph.textContent = JSON.stringify(responseData);
+		const responseParagraph = document.getElementById("response");
+        if (badgesData.data.length === 0) {
+          responseParagraph.textContent = "Person has a life! :D";
+        } else {
+          responseParagraph.textContent = "Person doesn't have a life. How sad.";
+        }
       } catch (error) {
         console.error("Error:", error);
       }
     }
+  </script>
   </script>
 </body>
 </html>
