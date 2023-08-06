@@ -19,12 +19,14 @@
     async function postData() {
       const inputField = document.getElementById("inputField");
       const inputValue = inputField.value;
+	  const responseParagraph = document.getElementById("response");
+	  responseParagraph.textContent = "Checking..."
 
       try {
         const apiUrl = "https://cors-anywhere.herokuapp.com/https://users.roblox.com/v1/usernames/users";
         const requestData = {
           "usernames": [inputValue],
-          "excludeBannedUsers": true
+          "excludeBannedUsers": false
         };
 
         const response = await fetch(apiUrl, {
@@ -36,15 +38,16 @@
         });
 
         const responseData = await response.json();
+		console.log(responseData)
         const userId = responseData.data[0].id; // Get the "id" value from the response
 
         // Fetch data from the badges API
         const badgesApiUrl = `https://cors-anywhere.herokuapp.com/https://badges.roblox.com/v1/users/${userId}/badges/awarded-dates?badgeIds=2124697480`;
         const badgesResponse = await fetch(badgesApiUrl);
         const badgesData = await badgesResponse.json();
-
+		console.log(badgesData)
         // Display the response data in the paragraph
-		const responseParagraph = document.getElementById("response");
+		
         if (badgesData.data.length === 0) {
           responseParagraph.textContent = "Person has a life! :D";
         } else {
