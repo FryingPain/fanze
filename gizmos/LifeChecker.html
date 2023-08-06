@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Life Checker</title>
+</head>
+<body>
+  <h1>Life Checker</h1>
+  <p>Welcome to Life Checker<br>Ever wondered if someone in Roblox ever had a life?<br>Well, now with Life Checker, you can check if that person has a life!<br>Just put in their name, and we'll check if they have a life.</p>
+  <p>Hope this website helps you in your daily tasks.</p>
+  <label for="inputField">Enter your text:</label>
+  <input type="text" id="inputField" placeholder="Username">
+
+  <button onclick="postData()">Submit</button>
+
+  <p id="response"></p>
+
+  <script>
+    async function postData() {
+      const inputField = document.getElementById("inputField");
+      const inputValue = inputField.value;
+
+      try {
+        const response = await fetch("https://users.roblox.com/v1/usernames/users", {
+		method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+		"usernames": "Panterakawaii",
+		"excludeBannedUsers": true
+        });
+
+        const responseData = await response.json();
+
+        // Display the response data in the paragraph
+        const responseParagraph = document.getElementById("response");
+        responseParagraph.textContent = JSON.stringify(responseData);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  </script>
+</body>
+</html>
