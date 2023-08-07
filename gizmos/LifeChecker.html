@@ -23,7 +23,7 @@
 	  responseParagraph.textContent = "Checking..."
 
       try {
-        const apiUrl = "https://cors-anywhere.herokuapp.com/https://users.roblox.com/v1/usernames/users";
+        const apiUrl = "https://users.roproxy.com/v1/usernames/users";
         const requestData = {
           "usernames": [inputValue],
           "excludeBannedUsers": false
@@ -42,7 +42,7 @@
         const userId = responseData.data[0].id; // Get the "id" value from the response
 
         // Fetch data from the badges API
-        const badgesApiUrl = `https://cors-anywhere.herokuapp.com/https://badges.roblox.com/v1/users/${userId}/badges/awarded-dates?badgeIds=2124697480`;
+        const badgesApiUrl = `https://badges.roproxy.com/v1/users/${userId}/badges/awarded-dates?badgeIds=2124697480`;
         const badgesResponse = await fetch(badgesApiUrl);
         const badgesData = await badgesResponse.json();
 		console.log(badgesData)
