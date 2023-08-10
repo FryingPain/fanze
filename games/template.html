@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Play QUALITY games on Fry's Game Catalogue.
+	Placeholder">
+    <meta property="og:image" content="placeholder.png">
+	<meta name="keywords" content="games,fry,fryingpain,game,catalogue,flash,html5">
+	<meta name="robots" content="index, follow">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="language" content="English">
+	<meta name="revisit-after" content="3 days">
+	<meta name="author" content="FryingPain">
+    <title>Placeholder - Fry's Game Catalogue</title>
+    <link rel="stylesheet" href="styles.css"> 
+  </head>
+  <body>
+    <div class="header">
+      <a href="index.html" class="logo"></a>
+      <h1 style="color: black;">Serving you the lastest games in <b>Q U A L I T Y</b>
+      </h1>
+    </div>
+    <div class="game-details">
+      <div class="game-title">Placeholder</div>
+	  <div class="game-canvas-container">
+		<div class="game-canvas" style="width: 550px;height: 450px">
+		<embed src="" width="100%" height="100%">
+		</div>
+	  </div>
+	  <br>
+      <div class="rating-container">
+        <div class="rating-text">Rate this game:</div>
+        <span class="rating-stars" data-value="1">&#9733;</span>
+        <span class="rating-stars" data-value="2">&#9733;</span>
+        <span class="rating-stars" data-value="3">&#9733;</span>
+        <span class="rating-stars" data-value="4">&#9733;</span>
+        <span class="rating-stars" data-value="5">&#9733;</span>
+      </div>
+      <script>
+        // Load previous rating from local storage
+        const storedRating = localStorage.getItem("userRating");
+        if (storedRating) {
+          const ratingStars = document.querySelectorAll(".rating-stars");
+          for (let i = 0; i < storedRating; i++) {
+            ratingStars[i].classList.add("active");
+          }
+        }
+        // Add click event listener to rating stars
+        const ratingStars = document.querySelectorAll(".rating-stars");
+        ratingStars.forEach((star, index) => {
+          star.addEventListener("click", () => {
+            const value = star.getAttribute("data-value");
+            // Remove active class from all stars
+            ratingStars.forEach(s => s.classList.remove("active"));
+            // Add active class to selected stars
+            for (let i = 0; i < value; i++) {
+              ratingStars[i].classList.add("active");
+            }
+            // Save the rating to local storage
+            localStorage.setItem("userRating", value);
+          });
+        });
+      </script>
+	  <div class="game-description"><b>Description:</b><br>Placeholder</div>
+      <div class="comment-section">Sign in GitHub to comment.
+	  <br>
+	  <script src="https://utteranc.es/client.js" repo="fryingpanwastaken/fanze" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+	  </div>
+    </div>
+	<div class="credits">
+		By FryingPain. 10% HTML skills, 90% ChatGPT.<br>
+		All rights go to the game owners.<br>
+		<a href="https://github.com/FryingPanWasTaken/fanze" style="color: white;">https://github.com/FryingPanWasTaken/fanze</a>
+	</div>
+	<br>
+  </body>
+</html>

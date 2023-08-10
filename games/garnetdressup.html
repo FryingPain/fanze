@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Play QUALITY games on Fry's Game Catalogue.
+	Garnet is the fusion of Ruby and Sapphire and the current de-facto leader of the Crystal Gems. Garnet is one of the last surviving Gems on Earth who joined the Crystal Gems in the rebellion against the Gem Homeworld, and afterwards assisted her friends in protecting the Earth over the next few millennia. After Rose Quartz gave up her physical form to give birth to her son, Steven Universe, Garnet took over as the leader of the group. This dress up game is pretty full of options and has most of the looks worn so far by Garnet. It has visuals like the first concept designs, in which she wore a yellow scarf, some of her regenerations, her beachwear and fusions such as Sugilite and Sardonix. You can even create a slightly different version of Ruby and Sapphire. You can change facial expressions and use various types of hair, with highlights and gradient. Have a great time creating your exclusive Crystal Gem Garnet.">
+    <meta property="og:image" content="/fanze/games/steven.png">
+	<meta name="keywords" content="games,fry,fryingpain,game,catalogue,flash,html5,garnet">
+	<meta name="robots" content="index, follow">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="language" content="English">
+	<meta name="revisit-after" content="3 days">
+	<meta name="author" content="FryingPain">
+	<title>Steven Universe: Crystal Gem Garnet Dress Up - Fry's Game Catalogue</title>
+    <link rel="stylesheet" href="styles.css"> 
+  </head>
+  <body>
+    <div class="header">
+      <a href="index.html" class="logo"></a>
+      <h1 style="color: black;">Serving you the lastest games in <b>Q U A L I T Y</b>
+      </h1>
+    </div>
+    <div class="game-details">
+      <div class="game-title">Steven Universe: Crystal Gem Garnet Dress Up</div>
+	  <div class="game-canvas-container">
+		<iframe src="https://html5.gamedistribution.com/rvvASMiM/33742eea51174871a7cefdb2c6cc0a87/index.html" class="game-canvas" style="width: 700px;height: 465px"></iframe>
+	  </div>
+	  <br>
+      <div class="rating-container">
+        <div class="rating-text">Rate this game:</div>
+        <span class="rating-stars" data-value="1">&#9733;</span>
+        <span class="rating-stars" data-value="2">&#9733;</span>
+        <span class="rating-stars" data-value="3">&#9733;</span>
+        <span class="rating-stars" data-value="4">&#9733;</span>
+        <span class="rating-stars" data-value="5">&#9733;</span>
+      </div>
+      <script>
+        // Load previous rating from local storage
+        const storedRating = localStorage.getItem("GarnetDressupRating");
+        if (storedRating) {
+          const ratingStars = document.querySelectorAll(".rating-stars");
+          for (let i = 0; i < storedRating; i++) {
+            ratingStars[i].classList.add("active");
+          }
+        }
+        // Add click event listener to rating stars
+        const ratingStars = document.querySelectorAll(".rating-stars");
+        ratingStars.forEach((star, index) => {
+          star.addEventListener("click", () => {
+            const value = star.getAttribute("data-value");
+            // Remove active class from all stars
+            ratingStars.forEach(s => s.classList.remove("active"));
+            // Add active class to selected stars
+            for (let i = 0; i < value; i++) {
+              ratingStars[i].classList.add("active");
+            }
+            // Save the rating to local storage
+            localStorage.setItem("GarnetDressupRating", value);
+          });
+        });
+      </script>
+	  <div class="game-description"><b>Description:</b><br>Garnet is the fusion of Ruby and Sapphire and the current de-facto leader of the Crystal Gems. Garnet is one of the last surviving Gems on Earth who joined the Crystal Gems in the rebellion against the Gem Homeworld, and afterwards assisted her friends in protecting the Earth over the next few millennia. After Rose Quartz gave up her physical form to give birth to her son, Steven Universe, Garnet took over as the leader of the group. This dress up game is pretty full of options and has most of the looks worn so far by Garnet. It has visuals like the first concept designs, in which she wore a yellow scarf, some of her regenerations, her beachwear and fusions such as Sugilite and Sardonix. You can even create a slightly different version of Ruby and Sapphire. You can change facial expressions and use various types of hair, with highlights and gradient. Have a great time creating your exclusive Crystal Gem Garnet.</div>
+      <div class="comment-section">Sign in GitHub to comment.
+	  <br>
+	  <script src="https://utteranc.es/client.js" repo="fryingpanwastaken/fanze" issue-term="pathname" theme="github-light" crossorigin="anonymous" async></script>
+	  </div>
+    </div>
+	<div class="credits">
+		By FryingPain. 10% HTML skills, 90% ChatGPT.<br>
+		All rights go to the game owners.<br>
+		<a href="https://github.com/FryingPanWasTaken/fanze" style="color: white;">https://github.com/FryingPanWasTaken/fanze</a>
+	</div>
+	<br>
+  </body>
+</html>
