@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
+    <title>Fry's Pregnancy Test</title>
+</head>
+<body>
+    <h1>Fry's Pregnancy Test</h1>
+    <p>This website will check if you are pregnant or not!</p>
+    <p>Does your body produce the hormone human chorionic gonadotrophin (hCG)?</p>
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
+    
+    <div id="result"></div>
+    
+    <audio id="pregnantSound">
+        <source src="/fanze/assets/pregnant.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="notPregnantSound">
+        <source src="/fanze/assets/victory.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        document.getElementById("yesButton").addEventListener("click", function() {
+            document.getElementById("result").innerHTML = "YOU ARE PREGNANT";
+            document.getElementById("pregnantSound").play();
+            document.getElementById("yesButton").style.display = "none";
+            document.getElementById("noButton").style.display = "none";
+            var button = document.createElement("button");
+            button.innerHTML = "But i'm underaged!";
+            document.body.appendChild(button);
+            button.addEventListener("click", function() {
+                document.getElementById("pregnantSound").pause();
+				alert("And you're stupid enough to not have protection with your bf?");
+                alert("L");
+                document.getElementById("result").innerHTML = "";
+                button.style.display = "none";
+                clearPage();
+                playVideo();
+            });
+        });
+        
+        document.getElementById("noButton").addEventListener("click", function() {
+            document.getElementById("result").innerHTML = "YOU ARE NOT PREGNANT";
+            document.getElementById("notPregnantSound").play();
+            document.getElementById("yesButton").style.display = "none";
+            document.getElementById("noButton").style.display = "none";
+            button.addEventListener("click", function() {
+                document.getElementById("notPregnantSound").pause();
+                alert("You're not pregnant!");
+                document.getElementById("result").innerHTML = "";
+                button.style.display = "none";
+                clearPage();
+                playVideo();
+            });
+        });
+        
+        function clearPage() {
+            document.body.innerHTML = "";
+        }
+        
+        function playVideo() {
+            var video = document.createElement("video");
+            video.width = "640";
+            video.height = "360";
+            video.controls = true;
+			video.autoplay = true;
+            var source = document.createElement("source");
+            source.src = "/fanze/assets/ohwait.mp4";
+            source.type = "video/mp4";
+            video.appendChild(source);
+            document.body.appendChild(video);
+        }
+    </script>
+</body>
+</html>
