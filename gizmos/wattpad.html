@@ -37,7 +37,7 @@
             const matches = storyData.match(regex);
             if (matches) {
               profanityCount += matches.length;
-              console.log("LADIES AND GENTLEMEN, WE GOT EM, found", profanity)
+              console.log("LADIES AND GENTLEMEN, WE GOT EM, found", profanity, "(x",matches.length," times)")
             }
           }
           if (profanityCount > 0) {
