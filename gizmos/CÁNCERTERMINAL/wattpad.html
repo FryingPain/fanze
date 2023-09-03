@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
+    <title>CÁNCER TERMINAL | WATTPAD EDITION</title>
+	<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul#placeholderList {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    background-color: #fff;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    /* Change to column layout for vertical alignment */
+    align-items: center;
+    /* Center horizontally */
+    justify-content: center;
+    /* Center vertically */
+    text-align: center;
+    /* Center text within the list item */
+  }
+
+  h5 a {
+    text-decoration: none;
+    color: #333;
+    font-size: 30px;
+    margin: 10px 0;
+    /* Adjust vertical spacing around the title */
+  }
+
+  img {
+    max-width: 130px;
+    height: auto;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  p {
+    color: #333;
+    font-size: 15px;
+    margin: 10px 0;
+    /* Adjust vertical spacing around the description */
+  }
+  
+  .desc {
+    color: #AAA;
+    font-size: 15px;
+    margin: 10px 0;
+    /* Adjust vertical spacing around the description */
+  }
+
+  div {
+    margin-top: 10px;
+  }
+
+  /* Style for the "Mature" label */
+  .label.label-danger {
+    color: #fff;
+    background-color: red;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-right: 5px;
+  }
+
+  /* Style for the "Complete" label */
+  .label.label-info {
+    color: #000;
+    background-color: cyan;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-right: 5px;
+  }
+
+  .loading {
+    text-align: center;
+    margin-top: 220px;
+	font-size: 50px;
+    font-weight: bold;
+	font-style: italic;
+  }
+  
+  #muteButton {
+	font-size: 30px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background-color: #444;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    }
+	#downloadData {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            cursor: pointer;
+            background-color: #222;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+        }
+</style>
+</head>
+<body>
+	<div class="header">
+        <h1>╰•★★ CÁNCER TERMINAL ★★•╯</h1>
+		<h1>WATTPAD EDITION</h1>
+		<br>
+        <div class="desc">The Wattpad edition of the original now-defunct Pinterest gallery.<br>Auto-updated!</div>
+    </div>
+	<button id="muteButton">Mute Music</button>
+	<button id="downloadData">Download Data as JSON</button> <!-- New button for downloading data -->
+	<div class="loading">
+        Loading...<br>
+		This may take a while.
+    </div>
+    <ul id="placeholderList">
+ 
+    </ul>
+	<audio id="backgroundMusic" autoplay loop>
+        <source src="" type="audio/mpeg">
+    </audio>
+	 <script>
+        const backgroundMusic = document.getElementById("backgroundMusic");
+        const muteButton = document.getElementById("muteButton");
+
+        // Array of music URLs
+        const musicUrls = [
+            "/fanze/assets/Game-Lobby-Music.mp3", // Replace with your actual music file URLs
+            "/fanze/assets/ray.mp3",
+            "/fanze/assets/pause.mp3",
+			"/fanze/assets/soft.mp3",
+			"/fanze/assets/sexy.mp3",
+			"/fanze/assets/mentality.mp3",
+			"/fanze/assets/plushy.mp3"
+        ];
+
+        // Function to pick a random music URL from the array
+        function pickRandomMusic() {
+            const randomIndex = Math.floor(Math.random() * musicUrls.length);
+            return musicUrls[randomIndex];
+        }
+
+        // Function to toggle the mute state of the music
+        function toggleMute() {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                muteButton.textContent = "Mute Music";
+            } else {
+                backgroundMusic.pause();
+                muteButton.textContent = "Unmute Music";
+            }
+        }
+
+        muteButton.addEventListener("click", toggleMute);
+
+        // Automatically start playing a random background music when the page loads
+        window.addEventListener("load", () => {
+            const randomMusicUrl = pickRandomMusic();
+            backgroundMusic.src = randomMusicUrl;
+            backgroundMusic.play();
+        });
+	
+    </script>
+    <script>
+        // Function to make the GET request and populate the list
+        async function fetchData() {
+            try {
+                const response = await fetch("https://www.wattpad.com/list/1263209314");
+                const html = await response.text();
+
+                // Create a temporary div element to parse the HTML response
+                const tempDiv = document.createElement("div");
+                tempDiv.innerHTML = html;
+
+                // Find all the list items with class "list-group-item"
+                const listItems = tempDiv.querySelectorAll(".list-group-item");
+
+                // Create an empty array to store the list items
+                const itemList = [];
+
+                // Iterate over the found list items and extract data
+                listItems.forEach(item => {
+                    const dataId = item.querySelector(".clearfix").getAttribute("data-id");
+                    var link = item.querySelector(".cover.on-navigate").getAttribute("href");
+					link = `https://www.wattpad.com${link}`;
+                    const imageSrc = item.querySelector(".cover.on-navigate img").getAttribute("src");
+                    const name = item.querySelector(".content h5 a.on-navigate").textContent;
+                    const views = item.querySelector(".reads").textContent.trim();
+                    const votes = item.querySelector(".votes").textContent.trim();
+                    const chapters = item.querySelector(".numParts").textContent.trim();
+                    const description = item.querySelector(".on-edit-hide").textContent.trim();
+					
+					// Check if there are label elements in story-status
+					const storyStatus = item.querySelector(".story-status");
+					const labels = storyStatus.querySelectorAll(".label");
+					const statusLabels = [];
+					labels.forEach(label => {
+					if (label.classList.contains("label-danger")) {
+						statusLabels.push("Mature");
+					} else if (label.classList.contains("label-info")) {
+						statusLabels.push("Complete");
+						}
+					});
+                    // Create an object with extracted data
+                    const itemData = {
+                        dataId,
+                        link,
+                        imageSrc,
+                        name,
+                        views,
+                        votes,
+                        chapters,
+                        description,
+						statusLabels
+                    };
+                    // Add the object to the array
+                    itemList.push(itemData);
+                });
+				console.log(itemList)
+                // Populate the HTML list with the extracted data
+                const placeholderList = document.getElementById("placeholderList");
+                itemList.forEach(itemData => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
+                        <h5><a href="${itemData.link}">${itemData.name}</a></h5>
+                        <a href="${itemData.link}"><img src="${itemData.imageSrc}" alt="${itemData.name} Image"></a>
+                        <p>Description: ${itemData.description}</p>
+                        <div>
+                            <span>Story ID: ${itemData.dataId}</span><br>
+                            <span>Views: ${itemData.views}</span><br>
+                            <span>Votes: ${itemData.votes}</span><br>
+                            <span>Chapters: ${itemData.chapters}</span>
+                        </div>
+						<div class="status-labels">
+							${itemData.statusLabels.map(label => {
+							if (label === "Mature") {
+								return `
+									<span class="label label-danger">Correctly marked as Mature (18+)</span>
+								`;
+							} else if (label === "Complete") {
+								return `
+									<span class="label label-info">Complete</span>
+								`;
+							}
+							return ''; // Handle other labels or no labels as needed
+							}).join(' ')}
+							</div>
+                    `;
+                    placeholderList.appendChild(listItem);
+					function downloadAllDataAsJSON() {
+                    const allData = {
+                        itemList: itemList
+                    };
+                    const allDataJSON = JSON.stringify(allData, null, 2); // Convert allData to JSON format with indentation
+                    const blob = new Blob([allDataJSON], { type: "application/json" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "CTWE.json"; // Specify the file name
+                    a.click();
+                    URL.revokeObjectURL(url);
+                }
+
+                // Add a click event listener to the download button only once
+                const downloadButton = document.getElementById("downloadData");
+                if (!downloadButton.hasEventListener) {
+                    downloadButton.addEventListener("click", downloadAllDataAsJSON);
+                    downloadButton.hasEventListener = true; // Set a flag to indicate that the event listener is added
+                }
+                });
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+			const loadingDiv = document.querySelector('.loading');
+            loadingDiv.style.display = 'none';
+
+        }
+
+        // Call the fetchData function when the page loads
+        window.onload = fetchData;
+		
+		
+    </script>
+</body>
+</html>
