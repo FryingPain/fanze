@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-<!-- HTML Codes by Quackit.com -->
-<title>
-confusion</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {background-color:#ffffff;background-repeat:no-repeat;background-position:top left;background-attachment:fixed;}
-h1{font-family:Arial, sans-serif;color:#000000;background-color:#ffffff;}
-p {font-family:Georgia, serif;font-size:14px;font-style:normal;font-weight:normal;color:#000000;background-color:#ffffff;}
-</style>
-</head>
-<body>
-<h1>Confusus es?</h1>
-<p>You're not supposed to be here.</p>
-<p></p>
-</body>
+  <head>
+    <link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
+    <title>Fanze</title>
+  </head>
+  <body>
+    <h1>Fanze.</h1>
+    <p>Welcome to the hub of the fanze website. Originally made for a little lomando.com ripoff, but hey, i made it all-purpose now. <br>Here's some of the important stuff to do here. </p>
+    <button onclick="window.location.href = '/fanze/gizmos/';">Gizmos</button><br><br>
+    <button onclick="window.location.href = '/fanze/assets/';">Assets</button><br><br>
+    <button onclick="window.location.href = '/fanze/games/';">Games</button><br><br>
+	
+    <h1>Contact</h1>
+    <p>Here's some of my social media.</p>
+    <button onclick="window.location.href = 'https://www.youtube.com/panterakawaii';">Original main YouTube Channel</button><br><br>
+    <button onclick="window.location.href = 'https://www.youtube.com/@fryinganimations1692';">FryingAnimations YouTube</button><br><br>
+    <button onclick="window.location.href = 'https://www.youtube.com/@FryingReuploads';">FryingReuploads YouTube</button><br><br>
+    <button onclick="window.location.href = 'https://www.roblox.com/users/254334857/profile';">Roblox</button><br><br>    
+	
+    <div id="div1">
+      <button onclick="document.getElementById('div1').style.display = 'none';document.getElementById('div2').style.display = 'block';">Discord</button>
+    </div>
+    <div id="div2" style="display:none">
+	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAZCAIAAAAuZuBLAAACvklEQVRIiWMUFBJhGDSAaaAdgAJGXYMbjLoGNxh1DW7AgkdOSUm5f+JESUlJuMivX7+nTJ64Yvlygub2T5ykpKRUXlpy48YN6rgGAg4dOlhSVES8iZQAwq4hDxTm5xGv2M3dIzQsrLe7ixzX9PT1SUlJf//2TVtH5+DBA8zMzAqKirlZWc+fP7e2tm5obFqzdq2qqoqqqlphfr6omFhjc/OZkyfNLCz4+Pju3rnT3NR448YNDQ2N2rp6ZRWVnz9//Pnz99y5s7dv3yYzFSsqKLx58ybQ32/KxElHDh/m4+UzMTFlYGCwtbX7+evnwf37kBWzsbLqGeh3drR3tLdJSUu7uroxMDBkZedwc/MkxMUuWbzk/79/O3fs+Pv3L2HX2NnZnzpzFoLyCwohgq/fvJ49a+bz588fP3l86tTJz18+W1ha8vML6Orr37t7DzPl7t2zd++ePZcuXvr06ZO8ogIDA4OgoNCdu7dv3Lhx6dKlP3//ioiIMJCdiv//Z/j37z+E/ezps6uXr2jr6jg6OQqLiKxetZKgmQwMDO/fv5OVkZWSltLT02NiYnr9+jVRriEGHDp00MzCwt/f/+vXL6dOnSRGy+s3r/UNDNat3/jz5481q1bv3bOHaq45fer02zdvtHV0N6xf/+zpM4LqlZSU9Q0Mli9fNmPaNGRx6pTFHz9+uHrlytevX0+ePEGM+ufPn3/5/DkhIRGSHE+cOt3Z3cPMzMxIrbZfa1u7rJxcYnzc379/CSoOCQ2Ljo6prq66dvUKAwNDdnaOi6tbcVEhpWHDzMwsJyfn5u5hbGJy7NhRYpzCwMDw88cPXl4eZ2dnTk4uBUVFLR2db9+/vX37ltJ0Iy0tPWnyVHFxsRMnT64iov6CgG3btmppawUFB8fGxf398+fBwwf9ff0fP36gWkxRBQyuFsWoa3ADAFnYJL+tQKaQAAAAAElFTkSuQmCC" alt="" />
+	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAZCAIAAAA0WgDFAAACeklEQVRIiWMUFBJhoAtgoo81ozaN2jSQNuUXFJ46cxaODh4+XF5RwczMjFV1TFzcvgMHY+Li8BuaX1C4cfMWJSVlOTm5DRs3F5eUMkD89OXLl9ycHDMTYw9Xlx3bd/j4+kXFxFDifClpqS+fPz98+EBIWJidg/3L168MaKH37v371atWvn//Tl9fH6sRSxYtcnKwX7JoEX6bhISEv33//vfvX25ubkZGxrdv3jAwMLDgVC0oWF5VbWVlxc7O/uHDh5Urls+dMyciMjItPWPWzBkrli9fvGTZ169feHl5lVVUPn36NHvmzNWrVyUmJqWmp7OwsDAwMJw6cxZiVFl5uamZKROa6aFh4YKCQhcvXhQTFxcUEJg0YUJ0VMTDhw+DgoI1NDTQXKOto3Pi+PHYmKj37955+/kyMDDMnz8vJTn51auXc+fONTMxXrpkyfPnzyPCwspLS1kYGBh4eHgmT5kC0fz9+7ctmzctW7Lk79+/aakpEMF9e/fGJybyCwii2fTg/oPJkycxMDA8fvJYVVVNSUn53r27UlKSLCysz548YWBgkJWT/fTx0717d6Gh9+XLl8qKipMnjiObwszMHJ+QEBAYKCIiysLC8uXLF/xxw8DAwMTEtHTZclU1NQYGhtr6+tr6eqhDDxysrKjAmZ+iYmJiYuOOHjkSExXV19vz69cvgjb9+/cvOioSHmIRYWHPnz9fumSJk4P9yRPHcdokwMf/7+/fa1eviQgL+/r6sbGxEbQJAuAhxsfPx8rC8unjR4g4zrS3e/cuC0vL6traL58/n79wXliE2AqTn1/gzZvXDAwM3NzcTMzMn2HBzjha547aNOxtAgAoqPv1NSDM6QAAAABJRU5ErkJggg==" alt="" />
+	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAZCAIAAADfbbvGAAACAklEQVRIiWMUFBJhoCVgoqnpoxaMWkA1C5iZmWfNmbvvwEFzC0sGBgZfP78t27adPH3m+ImTs+bMVVBUhChFU1ZcUnrqzFk42rh5i5KSMqYFLJycXPUNDerqan///mNgYHB2cSksKr529UpOdraysnJ+QUFVdU1mehobGzuyMgYGBkkpyWvXryXExhLwQWNzk4qa6p49eyB8c3OLH9+/T5s2/cH9+3v37Nm3d6+SoqKxkTGaMgYGBnExiTevXxMOorKSkpDAwE8fP2GV/vvnLyMTEyMzM5oyOTk5Xl7ex48eE7YAjX/mzBlOLq6srEwFRUVnFxdXd7cvX768fvUKTRkPLx8DI6OZmdmRYydOnDq9fOVKM3MLoizYtXPHksWL1NQ1Vq5a3dLSKi4ucerkyXv37qLr+/fv27evr16/TklKqK6q5Obmzi8o4OcXwLSABVNo7pw5c+fM0dPT6+js+vnz1/JlyzDVXLt+LSoiHMK+ceOGlqZWQFCQhqbmyRPHCfgADkLDwvn4BTZv2ojF+QwMzMzMZqZmzMzMuLTj8wEDA4OJiYmpufm1a1cXLlyAVUFwcEhWTvahg4emT5uqpa3t6u726OGDG9evE2tBRFQUCxPTkkWL/v79i1XBqlUrefl4Q8Mj3D08/v79e+Xy5ba21o8fP2CqZByt0UYtGPwWAAA6EtEvO+c4LgAAAABJRU5ErkJggg==" alt="" />
+    </div>
+	
+	<h1>Odd Stuff</h1>
+    <p>Some weird stuff i wanted to put.</p>
+	<button onclick="window.location.href = 'https://sites.google.com/view/fanze/fandom/';">Original fanze game</button><br><br>
+	<button onclick="window.location.href = 'https://sites.google.com/view/pan-cool-site';">Original website</button><br><br>
+	<p>Excluded most of useless stuff here.<br>Want to see all stuff this directory has to offer? Go see the full directory.</p>
+	<button onclick="window.location.href = '/fanze/full.html';">View the full directory</button><br><br>
+  </body>
 </html>
