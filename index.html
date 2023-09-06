@@ -3,8 +3,30 @@
   <head>
     <link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
     <title>Fanze</title>
+	<style>
+      rainbow {
+		font-size: 50px;
+        animation-name: rainbow;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      rainbow, p {
+        margin: 0.8rem 0;
+      }
+      @keyframes rainbow {
+        0% { color: #ff0000; }
+        17% { color: #ffff00; }
+        33% { color: #00ff00; }
+        50% { color: #00ffff; }
+        67% { color: #0000ff; }
+        83% { color: #ff00ff; }
+        100% { color: #ff0000; }
+      }
+    </style>
   </head>
   <body>
+	<rainbow>WE'RE ON FRYINGPAIN.COM!!!</rainbow>
     <h1>Fanze.</h1>
     <p>Welcome to the hub of the fanze website. Originally made for a little lomando.com ripoff, but hey, i made it all-purpose now. <br>Here's some of the important stuff to do here. </p>
     <button onclick="window.location.href = '/fanze/gizmos/';">Gizmos</button><br><br>
