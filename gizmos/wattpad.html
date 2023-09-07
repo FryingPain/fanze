@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Wattpad Story Seggs Checker</title>
-    <link rel="shortcut icon" href="/fanze/assets/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
   </head>
   <body>
     <h1>Wattpad Story Seggs Checker</h1>
@@ -23,7 +23,7 @@
           const storyData = await response.text();
 		  
           // Fetch the profanity list from the TXT file
-          const profanityListResponse = await fetch("/fanze/assets/profanity.txt");
+          const profanityListResponse = await fetch("https://www.fryingpain.com/assets/profanity.txt");
           const profanityList = await profanityListResponse.text();
           const profanityArray = profanityList.split("\n").map(profanity => profanity.trim());
           const storyDataLower = storyData.toLowerCase();
@@ -58,7 +58,7 @@
       }
 
       function playSound(soundFileName) {
-        const audio = new Audio(`/fanze/assets/${soundFileName}`);
+        const audio = new Audio(`https://www.fryingpain.com/assets/${soundFileName}`);
         audio.play();
       }
     </script>
