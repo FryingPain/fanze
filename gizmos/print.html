@@ -1,0 +1,45 @@
+<html>
+  <head>
+  <link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
+   <title>Fry's URL Image Printer</title>
+  </head>
+  <body>
+    <script>
+
+    function ImageToPrint(source)
+    {
+        return "<html><head><scri"+"pt>function step1(){\n" +
+                "setTimeout('step2()', 10);}\n" +
+                "function step2(){window.print();window.close()}\n" +
+                "</scri" + "pt></head><body onload='step1()'>\n" +
+                "<img src='" + source + "' /></body></html>";
+    }
+    
+    function PrintImage(source)
+    {
+        var Pagelink = "about:blank";
+        var pwa = window.open(Pagelink, "_new");
+		pwa.document.title = "Fry's Print";
+        pwa.document.open();
+		pwa.document.title = "Fry's Print";
+        pwa.document.write(ImageToPrint(source));
+        pwa.document.close();
+    }
+	
+	function getUrl()
+	{
+	var urlprint = document.getElementById("urlprint");
+	var url = urlprint.value; // prompt("Your url...");
+	if ((!url == "") || (!url == null)){
+	PrintImage(url); return false;
+	}
+	}
+	</script>
+	<h1>Fry's URL Image Printer</h1>
+	<p>Ever wanted to print a image through a badly made website? No? Whatever. Welcome to Fry's URL Image Printer.<br>Input a URL and press Print to print that image!<br>Now, why since you can do it yourself? No absolute idea, but eh, faster than opening Word.</p>
+	<p>0% CHATGPT!!!</p>
+	<label>Enter your URL:</label>
+	<input type="url" id="urlprint" name="homepage"><br><br>
+	<button onclick="getUrl();">Print</button>
+  </body>
+</html>
