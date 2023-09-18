@@ -2,7 +2,7 @@
 // @name         LADIES AND GENTLEMEN... WE GOT 'EM!
 // @namespace    https://www.fryingpain.com
 // @homepage     https://www.fryingpain.com/userscripts/
-// @version      1.0
+// @version      1.1
 // @description  Converts the "We couldn't generate a reply" into a dead meme & takes a screenshot when that happens...
 // @author       FryingPain & ChatGPT :troll:
 // @match        https://*.character.ai/*
@@ -68,12 +68,15 @@
 
     // Mutation Observer to watch for changes in the DOM
     const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-            if (mutation.addedNodes && mutation.addedNodes.length > 0) {
-                // Check if the added node matches the specific structure
-                const addedNode = mutation.addedNodes[0];
+    mutations.forEach(mutation => {
+        if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+            // Check if the added node matches the specific structure
+            const addedNode = mutation.addedNodes[0];
 
-                if (addedNode.classList.contains('Toastify__toast-container')) {
+            if (addedNode.classList.contains('Toastify__toast-container')) {
+                // Check if the added node contains the specific text
+                const toastText = addedNode.innerText || addedNode.textContent;
+                if (toastText.includes("We couldn't generate a reply.")) {
                     // Customize the messages and capture a screenshot
                     customizeToastifyMessages();
 
@@ -81,8 +84,9 @@
                     playSound('https://www.fryingpain.com/assets/ladies.mp3');
                 }
             }
-        });
+        }
     });
+});
 
     // Start observing changes in the DOM
     observer.observe(document.body, { childList: true, subtree: true });
