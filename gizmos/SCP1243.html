@@ -3,6 +3,7 @@
 <head>
   <link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
   <title>SCP-1243</title>
+  <meta name="description" content="SCP-1243 Recreation.">
   <style>
     body {
       background-color: rgb(0, 0, 0);
@@ -20,7 +21,7 @@
     }
     button {
       margin-top: 10px;
-      padding: 5px 10px;
+      padding: 1px 20px;
     }
   </style>
 </head>
@@ -33,14 +34,17 @@
     <div>
       Name: <input type="text" id="nameInput" oninput="updateCost()">
     </div>
+	<br>
     <div>
-      Cost: <span id="costDisplay">-</span>
+      Cost: <span id="costDisplay"></span>
     </div>
+	<br>
     <div>
       <button onclick="placeOrder()">Place Order</button>
     </div>
+	<br>
     <div>
-      Customers served: <span id="counter">9000</span>
+      <b>Customers served </b><span id="counter">9000</span>
     </div>
   </div>
 
@@ -55,7 +59,7 @@
     }
 
     function calculateCost(name) {
-      return name.length * 1; // Increase cost based on the number of characters in the name
+      return name.length * 2; // Increase cost based on the number of characters in the name
     }
 
     function incrementCounter() {
@@ -67,7 +71,7 @@
 
     function placeOrder() {
       incrementCounter();
-      alert("Anomalous properties triggered!");
+      // alert("Anomalous properties triggered!");
     }
   </script>
 </body>
