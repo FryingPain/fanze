@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Currently Wearing Viewer</title>
+</head>
+<body>
+    <h1>Roblox Currently Wearing Viewer</h1>
+	<p>Welcome to Roblox Currently Wearing Viewer<br>If you are lazy to go to the roblox website or you want to see banned user currently wearing, then this is the place for you.<br>Instead of showing the asset names, it shows the asset IDs because stupid Roblox wants me to include a random token idk where to get it from to POST it into their catalog api so it's just throwing darts!!!!!!<br>good luck :)</p>
+    <p>Enter a username:</p>
+    <input type="text" id="usernameInput">
+    <button id="fetchButton">Fetch Items</button>
+	<br>
+    <div id="itemList"></div>
+
+    <script>
+        document.getElementById("fetchButton").addEventListener("click", async () => {
+            const inputValue = document.getElementById("usernameInput").value;
+
+            try {
+                const apiUrl = "https://users.roproxy.com/v1/usernames/users";
+                const requestData = {
+                    "usernames": [inputValue],
+                    "excludeBannedUsers": false
+                };
+
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                const responseData = await response.json();
+                const userId = responseData.data[0].id;
+
+                const avatarApiUrl = `https://avatar.roproxy.com/v1/users/${userId}/currently-wearing`;
+                const avatarResponse = await fetch(avatarApiUrl);
+                const avatarData = await avatarResponse.json();
+                const assetIds = avatarData.assetIds;
+
+                const itemList = document.getElementById("itemList");
+                itemList.innerHTML = "";
+
+                assetIds.forEach(id => {
+                    const itemLink = document.createElement("a");
+                    itemLink.textContent = id;
+                    itemLink.href = `https://www.roblox.com/catalog/${id}`;
+                    itemLink.target = "_blank";
+                    itemLink.style.display = "block";
+                    itemList.appendChild(itemLink);
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>
