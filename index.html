@@ -29,6 +29,7 @@
 	<!-- <rainbow>WE'RE ON FRYINGPAIN.COM!!!</rainbow> -->
     <h1>FryingPain.</h1>
 	<h3>wha' -thelanber 2023</h3>
+	<p>www Repo Size: <span id="size"></span> MB</p>
     <p>Welcome to the hub of the fryingpain.com (previously fanze) website. Originally made for a little lomando.com ripoff, but hey, i made it all-purpose now. <br>Here's some of the important stuff to do here. </p>
     <button onclick="window.location.href = '/gizmos/';">Gizmos</button><br><br>
     <button onclick="window.location.href = '/assets/';">Assets</button><br><br>
@@ -59,5 +60,23 @@
 	<button onclick="window.location.href = 'full.html';">View the full directory</button><br><br>
 	  <p>Timber's Son</p>
 	  <img src='https://media.discordapp.net/attachments/914129545630740484/1149338613000179803/IMG_8675.png'>
+	  <script>
+    function convertKBtoMB(sizeInKB) {
+      return (sizeInKB / 1024).toFixed(2);
+    }
+
+    fetch("https://api.github.com/repos/fryingpanwastaken/fanze")
+      .then(response => response.json())
+      .then(data => {
+        const sizeInKB = data.size;
+
+        const sizeInMB = convertKBtoMB(sizeInKB);
+
+        document.getElementById("size").textContent = sizeInMB;
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
+  </script>
   </body>
 </html>
