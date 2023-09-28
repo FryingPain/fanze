@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button</title>
+    <link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    #container {
+        position: relative;
+    }
+    #clickButton {
+        font-size: 24px;
+    }
+    #counter {
+        font-size: 24px;
+    }
+    #visit-counter {
+        font-size: 16px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+</head>
+<body>
+    <div id="container">
+        <button id="clickButton">Click</button>
+        <p id="counter">0</p>
+    </div>
+    <p id="visit-counter">Visits: 1 | Time: 00:00</p>
+
+    <script>
+        // Click Counter
+        let clickCount = 0;
+        const clickButton = document.getElementById('clickButton');
+        const counter = document.getElementById('counter');
+
+        clickButton.addEventListener('click', () => {
+            clickCount++;
+            counter.textContent = clickCount;
+        });
+
+        // Visit Counter and Timer
+        let visitCount = localStorage.getItem('visitCount') || 0;
+        let startTime = localStorage.getItem('startTime') || new Date().getTime();
+
+        visitCount++;
+        localStorage.setItem('visitCount', visitCount);
+
+        function updateVisitCounter() {
+            const visitCounter = document.getElementById('visit-counter');
+            const currentTime = new Date().getTime();
+            const elapsedTime = new Date(currentTime - startTime);
+
+            visitCounter.textContent = `Visits: ${visitCount} | Time: ${formatTime(elapsedTime)}`;
+        }
+
+        // Helper function to format time as HH:mm:ss
+        function formatTime(time) {
+            const hours = time.getUTCHours().toString().padStart(2, '0');
+            const minutes = time.getUTCMinutes().toString().padStart(2, '0');
+            const seconds = time.getUTCSeconds().toString().padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateVisitCounter, 1000); // Update the timer every second
+    </script>
+</body>
+</html>
