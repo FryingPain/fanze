@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fry's R34 Search.</title>
+  <link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
+</head>
+<body>
+  <h1>Fry's R34 Search.</h1>
+  <p>Let's say, you want to know if they made weird crape of your comfort character, but you are too scared to see the reality, then this is the website for you.</p>
+  <p>This lets you search for something using the API, and it'll return the amount of posts found, with no images!</p>
+  <p>Remember, R34 searchs behave a bit different than a regular search engine.<br>Searching for example "apple bananas" is not equal to "apple_bananas".<br>Some search needs to have the source, for example, if you want to search Peridot, you must type "peridot_(steven_universe)" to get all results.</p>
+  <p>I suck at explaining, and i don't want to explain this garbage, so good luck i guess.</p>
+  <h2>MAXIMUM LIMIT IS 1000, I CAN DO NOTHING ABOUT IT.</h2>
+  <label for="inputField">Enter a search term:</label>
+  <input type="text" id="inputField" placeholder="">
+
+  <button onclick="find()">Submit</button>
+
+  <p id="response"></p>
+
+  <script>
+    async function find() {
+      const inputField = document.getElementById("inputField");
+      const tags = inputField.value;
+	  const responseParagraph = document.getElementById("response");
+	  responseParagraph.textContent = "Searching..."
+	  
+        const API = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags}&limit=1000&json=1`;
+        const responser = await fetch(API);
+        const data = await responser.json();
+		const length = data.length
+		console.log(data)
+        if (data.length === 1000) {
+          responseParagraph.textContent = `The search term "${tags}" returned ${length} items. Limit has been reached.`;
+        } else {
+          responseParagraph.textContent = `The search term "${tags}" returned ${length} items.`;
+        }
+    }
+  </script>
+  </script>
+</body>
+</html>
