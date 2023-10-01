@@ -27,13 +27,19 @@
 	  
         const API = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags}&limit=1000&json=1`;
         const responser = await fetch(API);
-        const data = await responser.json();
+		try {
+		data = await responser.json();
+		} catch (error) {
+		responseParagraph.textContent = `The search term "${tags}" returned 0 items.`;
+		}
 		const length = data.length
 		console.log(data)
         if (data.length === 1000) {
           responseParagraph.textContent = `The search term "${tags}" returned ${length} items. Limit has been reached.`;
-        } else {
-          responseParagraph.textContent = `The search term "${tags}" returned ${length} items.`;
+        } else if (data.length === 1) {
+          responseParagraph.textContent = `The search term "${tags}" returned ${length} item.`;
+		 } else {
+		 responseParagraph.textContent = `The search term "${tags}" returned ${length} items.`;
         }
     }
   </script>
