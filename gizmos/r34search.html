@@ -10,19 +10,22 @@
   <p>This lets you search for something using the API, and it'll return the amount of posts found, with no images!</p>
   <p>Remember, R34 searchs behave a bit different than a regular search engine.<br>Searching for example "apple bananas" is not equal to "apple_bananas".<br>Some search needs to have the source, for example, if you want to search Peridot, you must type "peridot_(steven_universe)" to get all results.</p>
   <p>I suck at explaining, and i don't want to explain this garbage, so good luck i guess.</p>
+  <p>Note that searching can take a while.</p>
   <label for="inputField">Enter a search term:</label>
   <input type="text" id="inputField" placeholder="">
 
-  <button onclick="find()">Submit</button>
+  <button id="button" onclick="find()">Submit</button>
 
   <p id="response"></p>
 
   <script>
     async function find() {
+	  const button = document.getElementById("button");
       const inputField = document.getElementById("inputField");
       const tags = inputField.value;
 	  const responseParagraph = document.getElementById("response");
 	  responseParagraph.textContent = "Searching..."
+	  button.disabled = true;
 	  var posts = 0;
 	  var pid = 0;
 	  do {
@@ -44,6 +47,7 @@
 		 } else {
 		 responseParagraph.textContent = `The search term "${tags}" returned ${posts} items.`;
         }
+		button.disabled = false;
     }
   </script>
   </script>
