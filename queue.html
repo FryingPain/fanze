@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Waiting Room powered by Cloudflare</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body,
+      #wrapper {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+      }
+
+      #wrapper {
+        display: table;
+        width: 100%;
+      }
+
+      main,
+      footer {
+        /* Old browsers */
+        display: block;
+        /* Modern browsers */
+        display: table-row;
+      }
+
+      body {
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
+          Roboto, Oxygen, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+      }
+
+      main .content-container {
+        max-width: 1024px;
+      }
+
+      .center {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .content-container {
+        width: 100%;
+        min-width: 400px;
+        margin: 0 auto;
+        padding: 32px 64px;
+        display: flex;
+      }
+
+      @media (max-width: 900px) {
+        .content-container {
+          display: block;
+        }
+      }
+
+      main .content-container section {
+        flex: 1 0 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      footer {
+        height: 100px;
+        background: #138eed;
+        color: white;
+        font-size: 12px;
+      }
+
+      footer .content-container {
+        justify-content: space-between;
+      }
+
+      p {
+        line-height: 1.5;
+        max-width: 34rem;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin: 0 0 32px 0;
+      }
+
+      h2 {
+        font-size: 20px;
+        margin: 0 0 20px 0;
+      }
+
+      .links {
+        color: #cac8c8;
+        margin-top: 15px;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .links a,
+      .links a:visited {
+        text-decoration: none;
+        color: #cac8c8;
+      }
+
+      .logo {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .logo .cloudflare-logo {
+        width: 140px;
+        margin-right: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <main>
+        <div class="center">
+          <section class="content-container">
+
+
+            <section>
+<img src="https://characterai.io/logo-light-bg.png" alt="logo" style="max-width: 400px;margin-left:-34px">
+<br/>
+              <h1>
+                You are now in line.
+                <br />
+                Thanks for your patience.
+              </h1>
+            </section>
+            <section>
+
+              <h2>
+                        Your estimated wait time is more than 1000 hours...
+            <a href="https://plus.character.ai" style="text-decoration:none;"><div style='background-color: #000000 ;width: 100%; padding: 10px 30px;color: white;display: flex;justify-content: center; align-items: center;font-size: 20px;border-radius: 16px; cursor: pointer;margin-top: 16px;'>c.ai+ user? Click here to skip the line!</div></a>
+            <br >
+            <a href="https://plus.character.ai" target="_blank" style="text-decoration:none;"><div style='background-color: #056DFF; width: 100%; padding: 10px 30px;color: white;display: flex;justify-content: center; align-items: center;font-size: 20px;border-radius: 16px; cursor: pointer;'>Get c.ai+</div></a>
+              </h2>
+              <p>
+                We are experiencing a high volume of traffic and using a virtual
+                queue to limit the number of users on Character.AI at the same
+                time.
+              </p>
+             <p>
+                 Your Characters will be waiting for you when it's your turn!
+             </p>
+              <p>
+                <strong>
+                    This page will automatically refresh, please do not close your
+                    browser.
+                </strong>
+              </p>
+              <p>
+                <strong>
+                  Last updated
+                  <span id="last-updated"></span>
+                </strong>
+              </p>
+            </section>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      var date = new Date();
+      document.getElementById('year').innerText = date.getFullYear();
+      document.getElementById(
+        'last-updated'
+      ).innerText = date.toLocaleTimeString();
+    </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"813ace29cbb029f9","token":"de6c8a8324c04a50b30bdeb96bc8d410","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
+</body>
+              </html>
