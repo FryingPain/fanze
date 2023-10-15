@@ -39,11 +39,29 @@ display: inline;
 	text-shadow:0px 1px 0px #a1a1a1;
 	margin: 0 auto;
 }
-.button:hover {
+
+.button2 {
+	width: auto;
+	background:linear-gradient(to bottom, #fafafa 5%, #d4d4d4 100%);
+	background-color:#fafafa;
+	border-radius:10px;
+	border:3px solid #dedede;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:28px;
+	font-weight:bold;
+	padding:10px 27px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #a1a1a1;
+	margin: 0 auto;
+}
+.button,.button2:hover {
 	background:linear-gradient(to bottom, #d4d4d4 5%, #fafafa 100%);
 	background-color:#d4d4d4;
 }
-.button:active {
+.button,.button2:active {
 	position:relative;
 	top:1px;
 }
@@ -73,7 +91,7 @@ h1 {
 	text-shadow: 0px 2px 3px rgba(0, 0, 0, 1);
 }
 
-h2 {
+h2,h3 {
 	font-family: "Lato";
 	color: white;
 	text-shadow: 0px 2px 3px rgba(0, 0, 0, 1);
