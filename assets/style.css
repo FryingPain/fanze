@@ -57,11 +57,11 @@ display: inline;
 	text-shadow:0px 1px 0px #a1a1a1;
 	margin: 0 auto;
 }
-.button,.button2:hover {
+.button:hover,.button2:hover {
 	background:linear-gradient(to bottom, #d4d4d4 5%, #fafafa 100%);
 	background-color:#d4d4d4;
 }
-.button,.button2:active {
+.button:active,.button2:active {
 	position:relative;
 	top:1px;
 }
