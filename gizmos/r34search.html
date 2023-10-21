@@ -24,7 +24,7 @@
   <button id="button" onclick="find()">Submit</button>
 
   <p id="response"></p>
-
+  <img style="display: none;" id="gif" src="../assets/sharing.gif"></img>
   <script>
     async function find() {
 	  const booru = document.getElementById("booru");
@@ -32,6 +32,7 @@
       const inputField = document.getElementById("inputField");
       const tags = inputField.value;
 	  const responseParagraph = document.getElementById("response");
+	  document.getElementById("gif").style.display = "block";
 	  responseParagraph.textContent = "Searching..."
 	  button.disabled = true;
 	  inputField.disabled = true;
@@ -69,7 +70,8 @@
         }
 		button.disabled = false;
 		inputField.disabled = false;
-	  booru.disabled = false;
+		booru.disabled = false;
+		document.getElementById("gif").style.display = "none";
     }
   </script>
 </body>
