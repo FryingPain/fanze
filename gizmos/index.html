@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content="https://www.fryingpain.com/assets/wave.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Extra content..">
+	<meta property="og:description" content="Extra content..">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="language" content="English">
 	<meta name="revisit-after" content="3 days">
@@ -27,7 +27,7 @@
         
         for (let file of data) {
 
-		  htmlString += `<button class="button2" onclick="window.location.href = '${file.name}';">${file.name}</button>`;
+		  htmlString += `<a class="button2" href = '${file.name}'>${file.name}</a>`;
         }
 
         htmlString += '</ul>';
