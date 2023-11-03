@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech Moment</title>
+</head>
+<body>
+    <h1>Text to Speech Moment</h1>
+	<p>Note that the voice may be in your device language.</p>
+	<label for="inputField">Enter text to text to speech moment:</label>
+	<input type="text" id="inputField" placeholder="text to speech moment"><br><br>
+    <button id="speakButton">Text to speech moment</button>
+	
+    <script>
+        document.getElementById("speakButton").addEventListener("click", function() {
+			var ttsm = document.getElementById("inputField").value;
+			if ((ttsm === "") || (ttsm === null)) {
+			ttsm = "text to speech moment";
+			}
+            var msg = new SpeechSynthesisUtterance();
+            msg.text = ttsm
+            window.speechSynthesis.speak(msg);
+        });
+    </script>
+</body>
+</html>
