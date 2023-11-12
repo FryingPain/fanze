@@ -89,10 +89,10 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // Update the visit count on the page
-                document.getElementById("visit-count").innerText = "Visit Count: " + xhr.responseText;
+                document.getElementById("visit-count").innerText = xhr.responseText;
             }
         };
-        xhr.open("GET", "counter.php", true);
+        xhr.open("GET", "http://fryingpain.rf.gd/counter.php", true);
         xhr.send();
     </script>
   </body>
