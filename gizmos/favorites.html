@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Favorite Viewer</title>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      .item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+
+      img {
+        max-width: 100px;
+        max-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="back" src="https://www.fryingpain.com/assets/back.png" alt="Go back to Gizmos" onclick="window.location.href = '/gizmos/'" style="width:64px;">
+    <h1>Roblox Favorite Viewer</h1>
+    <p>Welcome to Roblox Favorite Viewer <br>If you are lazy to go to the roblox website or you want to see banned user favorite, then this is the place for you. (Yes i stole this phrase from the currently viewing webpage.)<br>Input a username, AssetType, specify the pages and tada!!! You get a ugly looking list of stuff.<br>Click on the icon to go to the asset webpage.<br>good luck :) </p>
+    <label for="usernameInput">Enter a username:</label>
+    <input type="text" id="usernameInput" placeholder=""><br><br>
+    <label for="assettype">Choose an AssetType:</label>
+    <select id="assettype" name="assetlist">
+      <option value="2">TShirt (2)</option>
+      <option value="3">Audio (3)</option>
+      <option value="4">Mesh (4)</option>
+      <option value="5">Lua (5)</option>
+      <option value="8">Hat (8)</option>
+      <option value="9">Place (9)</option>
+      <option value="10">Model (10)</option>
+      <option value="11">Shirt (11)</option>
+      <option value="12">Pants (12)</option>
+      <option value="13">Decal (13)</option>
+      <option value="17">Head (17)</option>
+      <option value="18">Face (18)</option>
+      <option value="19">Gear (19)</option>
+      <option value="21">Badge (21)</option>
+      <option value="24">Animation (24)</option>
+      <option value="27">Torso (27)</option>
+      <option value="28">RightArm (28)</option>
+      <option value="29">LeftArm (29)</option>
+      <option value="30">LeftLeg (30)</option>
+      <option value="31">RightLeg (31)</option>
+      <option value="32">Package (32)</option>
+      <option value="34">GamePass (34)</option>
+      <option value="38">Plugin (38)</option>
+      <option value="40">MeshPart (40)</option>
+      <option value="41">HairAccessory (41)</option>
+      <option value="42">FaceAccessory (42)</option>
+      <option value="43">NeckAccessory (43)</option>
+      <option value="44">ShoulderAccessory (44)</option>
+      <option value="45">FrontAccessory (45)</option>
+      <option value="46">BackAccessory (46)</option>
+      <option value="47">WaistAccessory (47)</option>
+      <option value="48">ClimbAnimation (48)</option>
+      <option value="49">DeathAnimation (49)</option>
+      <option value="50">FallAnimation (50)</option>
+      <option value="51">IdleAnimation (51)</option>
+      <option value="52">JumpAnimation (52)</option>
+      <option value="53">RunAnimation (53)</option>
+      <option value="54">SwimAnimation (54)</option>
+      <option value="55">WalkAnimation (55)</option>
+      <option value="56">PoseAnimation (56)</option>
+      <option value="57">EarAccessory (57)</option>
+      <option value="58">EyeAccessory (58)</option>
+      <option value="61">EmoteAnimation (61)</option>
+      <option value="62">Video (62)</option>
+      <option value="64">TShirtAccessory (64)</option>
+      <option value="65">ShirtAccessory (65)</option>
+      <option value="66">PantsAccessory (66)</option>
+      <option value="67">JacketAccessory (67)</option>
+      <option value="68">SweaterAccessory (68)</option>
+      <option value="69">ShortsAccessory (69)</option>
+      <option value="70">LeftShoeAccessory (70)</option>
+      <option value="71">RightShoeAccessory (71)</option>
+      <option value="72">DressSkirtAccessory (72)</option>
+      <option value="73">FontFamily (73)</option>
+      <option value="76">EyebrowAccessory (76)</option>
+      <option value="77">EyelashAccessory (77)</option>
+      <option value="78">MoodAnimation (78)</option>
+      <option value="79">DynamicHead (79)</option>
+    </select>
+    <br><br>
+	
+	<label for="resultsperpage">Results per page:</label>
+	<input type="number" id="resultsperpage" value="10" min="1" max="100">
+	<br><br>
+	<label for="page">Page:</label>
+	<input type="number" id="page" value="1" min="1">
+	<br><br>
+    <button id="fetchButton">Fetch Favorites</button>
+    <br><br>
+    <img style="display: none;" id="gif" src="../assets/sharing.gif"></img>
+    <div id="items-container"></div>
+    <script>
+		function disable(tof) {
+		document.getElementById("gif").style.display = "block";
+		const assettype = document.getElementById("assettype");
+        const fetchButton = document.getElementById("fetchButton");
+        const inputfield = document.getElementById("usernameInput");
+		const page = document.getElementById("page");
+		const resultsperpage = document.getElementById("resultsperpage");
+		assettype.disabled = tof;
+        fetchButton.disabled = tof;
+        inputfield.disabled = tof;
+		resultsperpage.disabled = tof;
+		page.disabled = tof;
+		}
+		
+		
+      document.getElementById("fetchButton").addEventListener("click", async () => {
+		disable(true)
+        const assettype = document.getElementById("assettype");
+        const inputValue = document.getElementById("usernameInput").value;
+		const resultsperpage = document.getElementById("resultsperpage").value
+		const page = document.getElementById("page").value
+        try {
+          const apiUrl = "https://corsproxy.io/?https://users.roproxy.com/v1/usernames/users";
+          const requestData = {
+            "usernames": [inputValue],
+            "excludeBannedUsers": false
+          };
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+          });
+          const responseData = await response.json();
+          const userId = responseData.data[0].id;
+		  console.log(assettype.value);
+          const avatarApiUrl = `https://www.roproxy.com/users/favorites/list-json?assetTypeId=${assettype.value}&itemsPerPage=${resultsperpage}&pageNumber=${page}&userId=${userId}`;
+          const reponseDataNormal = await fetch(avatarApiUrl);
+          const responseData2 = await reponseDataNormal.json();
+          var itemsContainer = document.getElementById('items-container');
+		  itemsContainer.innerHTML = "";
+		  if (responseData2.Data.TotalItems === 0) {
+			itemsContainer.innerHTML = "Nothing found.";
+			disable(false)
+			document.getElementById("gif").style.display = "none";
+		  return
+		  }
+          responseData2.Data.Items.forEach(function(item) {
+            var itemDiv = document.createElement('div');
+            itemDiv.classList.add('item');
+            itemDiv.innerHTML = `
+                
+					
+													
+													<h2>${item.Item.Name}</h2>
+													<!-- <p>${item.Item.Description ? item.Item.Description : 'No description available'}</p> -->
+													<p>Creator: ${item.Creator.Name}</p>
+													<a href="${item.Item.AbsoluteUrl}" target="_blank">
+														<img src="${item.Thumbnail.Url}" alt="${item.Item.Name}">
+														</a>
+            `;
+            // Append the item div to the container
+            itemsContainer.appendChild(itemDiv);
+			disable(false)
+			document.getElementById("gif").style.display = "none";
+          });
+        } catch (error) {
+			disable(false)
+		  itemsContainer.innerHTML = "There was an error.";
+          console.error(error);
+		  document.getElementById("gif").style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
