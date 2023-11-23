@@ -20,7 +20,6 @@
     <h1>FryingPain.</h1>
 	<h2>wha' -thelanber 2023</h2>
 	<p>www Repo Size: <span id="size">Loading...</span> MB</p>
-	<p>Visits count: <span id="visit-count">Loading...</span></p>
 	<h2>New style! Don't like it? <a href="oldindex.html">Return to the old style.</a></h2>
 	<p>Just added!</p>
 	<a class="button" href = '/scams/'>Dissecting Roblox Scams</a><br>
@@ -83,17 +82,5 @@
         console.error("Error fetching data:", error);
       });
   </script>
-  <script>
-        // Make an asynchronous request to the PHP script
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // Update the visit count on the page
-                document.getElementById("visit-count").innerText = xhr.responseText;
-            }
-        };
-        xhr.open("GET", 'https://corsproxy.io/?' + encodeURIComponent('https://api.fryingpain.com/counter.php'), true);
-        xhr.send();
-    </script>
   </body>
 </html>
