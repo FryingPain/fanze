@@ -1,6 +1,5 @@
 <html>
 <head>
-	<link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
 </head>
   <body>
   <h1>Welcome to da ass et foldero xD</h1>
@@ -12,7 +11,13 @@
         let htmlString = '<ul>';
         
         for (let file of data) {
-          htmlString += `<li><a href="${file.name}">${file.name}</a></li>`;
+		  let mb = (file.size / 1024 / 1024).toFixed(2);
+		  let kb = (file.size / 1024).toFixed(2);
+		  if (mb >= 1) {
+		  htmlString += `<li><a href="${file.name}">${file.name} | ${mb} MB</a></li>`;
+		  } else {
+		  htmlString += `<li><a href="${file.name}">${file.name} | ${kb} KB</a></li>`;
+		  }		  
         }
 
         htmlString += '</ul>';
