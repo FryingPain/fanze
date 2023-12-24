@@ -26,11 +26,13 @@
 		return
 	  }
       try {
-        const resp = await fetch(inputValue);		
-        if (resp.includes('{"key":"yt_ad","value":"1"}')) {
-          responseParagraph.textContent = "Video is monetized.";
+        const resp = await fetch('https://corsproxy.io/?' + inputValue);	
+		const thing = await resp.text()
+		console.log(thing);
+        if (thing.includes('yt_ad')) {
+          responseParagraph.textContent = "🟢 Video is monetized.";
         } else {
-          responseParagraph.textContent = "Video is not monetized.";
+          responseParagraph.textContent = "🔴 Video is not monetized.";
         }
       } catch (error) {
         console.error("Error:", error);
