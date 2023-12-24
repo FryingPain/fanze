@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Video Monetization Checker</title>
+</head>
+<body>
+  <img id="back" src="https://www.fryingpain.com/assets/back.png" alt="Go back to Gizmos" onclick="window.location.href = '/gizmos/'" style="width:64px;">
+  <h1>YouTube Video Monetization Checker</h1>
+  <p>Welcome to YouTube Video Monetization Checker<br>To check if a video is monetized, you need to check in the video source page if the follow string exists: <b>{"key":"yt_ad","value":"1"}</b>. This webpage does exactly that.<br>
+  Sometimes, YouTubers lie when saying that their video isn't monetized, because, they want money, and they don't want to lose their opportunity.</p>
+  <label for="inputField">Enter YouTube video URL:</label>
+  <input type="text" id="inputField">
+
+  <button onclick="postData()">Submit</button>
+
+  <p id="response"></p>
+
+  <script>
+    async function postData() {
+      const inputField = document.getElementById("inputField");
+      const inputValue = inputField.value;
+	  const responseParagraph = document.getElementById("response");
+	  responseParagraph.textContent = "Checking..."
+	  if (inputValue.includes("www.youtube.com/watch") !== true) {
+		responseParagraph.textContent = "Not a YouTube /video URL.";
+		return
+	  }
+      try {
+        const resp = await fetch(inputValue);		
+        if (resp.includes('{"key":"yt_ad","value":"1"}')) {
+          responseParagraph.textContent = "Video is monetized.";
+        } else {
+          responseParagraph.textContent = "Video is not monetized.";
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  </script>
+</body>
+</html>
