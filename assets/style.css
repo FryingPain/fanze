@@ -79,7 +79,7 @@ display: inline;
 
 
 body {
-  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('background.png');
+  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('xmas.jpg');
   background-size: cover;
   background-attachment: fixed;
 }
@@ -120,7 +120,7 @@ rainbow {
 		font-family: "Lato";
 		font-size: 50px;
         animation-name: rainbow;
-        animation-duration: 1s;
+        animation-duration: 5s;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
