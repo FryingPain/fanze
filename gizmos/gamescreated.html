@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Games Created by User Viewer</title>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      .item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+
+      img {
+        max-width: 100px;
+        max-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="back" src="https://www.fryingpain.com/assets/back.png" alt="Go back to Gizmos" onclick="window.location.href = '/gizmos/'" style="width:64px;">
+    <h1>Roblox Games Created by User Viewer</h1>
+    <p>Roblox Games Created by User Viewer<br>If you want to see the games created by a banner user, or see the unlisted games on their profile, this is the webpage for you.<br>good luck :) </p>
+    <label for="usernameInput">Enter a username:</label>
+    <input type="text" id="usernameInput" placeholder="">
+    <br><br>
+	<label for="limit">Results per page:</label>
+	<select id="limit" name="limitlist">
+	  <option value="10">10</option>   
+      <option value="25">25</option>
+      <option value="50">50</option>
+    </select>
+	<br><br>
+	<label for="order">Sort order:</label>
+	<select id="order" name="orderlist">
+	  <option value="Asc">Ascending</option>   
+      <option value="Desc">Descending</option>
+    </select>
+	<br><br>
+    <button id="fetchButton">Fetch</button>
+    <br><br>
+    <img style="display: none;" id="gif" src="../assets/sharing.gif"></img>
+    <div id="items-container"></div>
+    <script>
+		function disable(tof) {
+			document.getElementById("gif").style.display = "block";
+			const limit = document.getElementById("limit");
+			const fetchButton = document.getElementById("fetchButton");
+			const inputfield = document.getElementById("usernameInput");
+			const order = document.getElementById("order");
+			limit.disabled = tof;
+			fetchButton.disabled = tof;
+			inputfield.disabled = tof;
+			order.disabled = tof;
+		}
+		
+		
+      document.getElementById("fetchButton").addEventListener("click", async () => {
+		disable(true)
+        const inputValue = document.getElementById("usernameInput").value;
+		const limit = document.getElementById("limit").value
+		const order = document.getElementById("order").value
+        try {
+          const apiUrl = "https://corsproxy.io/?https://users.roproxy.com/v1/usernames/users";
+          const requestData = {
+            "usernames": [inputValue],
+            "excludeBannedUsers": false
+          };
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+          });
+          const responseData = await response.json();
+          const userId = responseData.data[0].id;
+          const url = `https://games.roproxy.com/v2/users/${userId}/games?accessFilter=2&limit=${limit}&sortOrder=${order}`;
+          const reponseDataNormal = await fetch(url);
+          const responseData2 = await reponseDataNormal.json();
+          var itemsContainer = document.getElementById('items-container');
+		  itemsContainer.innerHTML = "";
+		  if (responseData2.data.TotalItems === 0) {
+			itemsContainer.innerHTML = "Nothing found.";
+			disable(false)
+			document.getElementById("gif").style.display = "none";
+		  return
+		  }
+          responseData2.data.forEach(function(item) {
+            var itemDiv = document.createElement('div');
+            itemDiv.classList.add('item');
+            itemDiv.innerHTML = `
+                
+					
+													<h2>${item.name}</h2>
+													<p>Description: ${item.description}</p>
+													<p>${item.placeVisits} visits.</p>
+													<a href="https://www.roblox.com/games/${item.rootPlace.id}/" target="_blank">
+													<p>https://www.roblox.com/games/${item.rootPlace.id}/</p></a>
+            `;
+            // Append the item div to the container
+            itemsContainer.appendChild(itemDiv);
+			disable(false)
+			document.getElementById("gif").style.display = "none";
+          });
+        } catch (error) {
+			disable(false)
+			var itemsContainer = document.getElementById('items-container');
+		  itemsContainer.innerHTML = "There was an error.";
+          console.error(error);
+		  document.getElementById("gif").style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
