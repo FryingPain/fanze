@@ -27,7 +27,7 @@
   <body>
     <img id="back" src="https://www.fryingpain.com/assets/back.png" alt="Go back to Gizmos" onclick="window.location.href = '/gizmos/'" style="width:64px;">
     <h1>Roblox Games Created by User Viewer</h1>
-    <p>Roblox Games Created by User Viewer<br>If you want to see the games created by a banner user, or see the unlisted games on their profile, this is the webpage for you.<br>good luck :) </p>
+    <p>If you want to see the games created by a banner user, or see the unlisted games on their profile, this is the webpage for you.<br>good luck :) </p>
     <label for="usernameInput">Enter a username:</label>
     <input type="text" id="usernameInput" placeholder="">
     <br><br>
@@ -38,12 +38,15 @@
       <option value="50">50</option>
     </select>
 	<br><br>
-	<label for="order">Sort order:</label>
+	<label for="order">Sort order (this does nothing):</label>
 	<select id="order" name="orderlist">
 	  <option value="Asc">Ascending</option>   
       <option value="Desc">Descending</option>
     </select>
 	<br><br>
+	<label for="Page:">Enter page cursor:</label>
+    <input type="text" id="cursor" placeholder="">
+    <br><br>
     <button id="fetchButton">Fetch</button>
     <br><br>
     <img style="display: none;" id="gif" src="../assets/sharing.gif"></img>
@@ -55,10 +58,12 @@
 			const fetchButton = document.getElementById("fetchButton");
 			const inputfield = document.getElementById("usernameInput");
 			const order = document.getElementById("order");
+			const cursor = document.getElementById("cursor");
 			limit.disabled = tof;
 			fetchButton.disabled = tof;
 			inputfield.disabled = tof;
 			order.disabled = tof;
+			cursor.disabled = tof;
 		}
 		
 		
@@ -67,6 +72,7 @@
         const inputValue = document.getElementById("usernameInput").value;
 		const limit = document.getElementById("limit").value
 		const order = document.getElementById("order").value
+		const cursor = document.getElementById("cursor").value
         try {
           const apiUrl = "https://corsproxy.io/?https://users.roproxy.com/v1/usernames/users";
           const requestData = {
@@ -82,7 +88,7 @@
           });
           const responseData = await response.json();
           const userId = responseData.data[0].id;
-          const url = `https://games.roproxy.com/v2/users/${userId}/games?accessFilter=2&limit=${limit}&sortOrder=${order}`;
+          const url = `https://games.roproxy.com/v2/users/${userId}/games?accessFilter=2&limit=${limit}&cursor=${cursor}&sortOrder=${order}`;
           const reponseDataNormal = await fetch(url);
           const responseData2 = await reponseDataNormal.json();
           var itemsContainer = document.getElementById('items-container');
@@ -93,6 +99,10 @@
 			document.getElementById("gif").style.display = "none";
 		  return
 		  }
+		  var pagers = document.createElement('div');
+			pagers.classList.add('item');
+            pagers.innerHTML = `<h2>IMPORTANT</h2><p>NEXT PAGE: <b>${responseData2.nextPageCursor}</b><br>PREVIOUS PAGE: <b>${responseData2.previousPageCursor}</b><br>Copy and paste the code to <b>Enter Page Cursor</b> to go to the next/previous page.</p>`;
+			itemsContainer.appendChild(pagers);
           responseData2.data.forEach(function(item) {
             var itemDiv = document.createElement('div');
             itemDiv.classList.add('item');
