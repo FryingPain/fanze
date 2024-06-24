@@ -2,7 +2,7 @@
 // @name         Parappa Google Search
 // @namespace    https://www.fryingpain.com
 // @homepage     https://www.fryingpain.com/userscripts/
-// @version      1.0.0
+// @version      1.0.1
 // @description  Search images. now in parappa style!
 // @author       FryingPain & AI :3
 // @match        *://www.google.com/search*
