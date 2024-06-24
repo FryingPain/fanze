@@ -96,8 +96,9 @@ Now i'm going to watch Murder Drones.
     /*
     Song 1: Hair Scare - Parappa 2
     Song 2: Instructor Mooselini's RAP - Parappa 1
+	You can comment the code and make it force a song.
     */
-    const song = 2 // 1 + random(2);
+    const song = 1 + random(2);
 
     const increase = document.createElement('audio');
     increase.src = 'https://www.fryingpain.com/assets/parappa/getting_better.wav';
