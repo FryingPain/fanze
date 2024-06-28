@@ -2,7 +2,7 @@
 // @name         Parappa Google Search
 // @namespace    https://www.fryingpain.com
 // @homepage     https://www.fryingpain.com/userscripts/
-// @version      1.0.1
+// @version      1.1.0
 // @description  Search images. now in parappa style!
 // @author       FryingPain & AI :3
 // @match        *://www.google.com/search*
@@ -62,6 +62,8 @@ Now i'm going to watch Murder Drones.
         return Math.floor(Math.random() * max);
     }
 
+    const detectedOverlay = false; // Set to TRUE to see an overlay of the detected words. (You can also see the words on the console.)
+
     let stat = "alright";
     let statn = 2;
     let statbef = statn;
@@ -78,7 +80,7 @@ Now i'm going to watch Murder Drones.
     Important: Words cannot have spaces. (sad.)
     */
     const Trigger1 = ['amor', 'genderswap', 'deviantart', 'furaffinity', 'affinity', 'wattpad', 'love', 'fat', 'goo', 'changed', 'suggestive', 'yaoi', 'yuri', 'lumity', 'rupphire'];
-    const Trigger2 = ['fluff', 'rule', 'hentai', 'nsfw', 'cheeks', 'boozy' /*Fuck you enthuziastic. */ , 'fart', 'toot', 'feet', 'foot', 'vorarephilia', 'vore', 'inflation', 'scat', 'rule34', 'paheal', 'porn', 'dick', 'cum', 'smut', '+18', 'blushmallet', 'diarrhea', 'nightcrawler', 'dakimakura', 'bodypillow', '🔞', 'digestion', 'maid', 'bunny', 'feizao', 'notive', 'explicit', 'r34', 'diaper', 'r64'];
+    const Trigger2 = ['7w7','7u7','r63','chubby','R18','fluff', 'rule', 'hentai', 'nsfw', 'cheeks', 'boozy' /*Fuck you enthuziastic. */ , 'fart', 'toot', 'feet', 'foot', 'vorarephilia', 'vore', 'inflation', 'scat', 'rule34', 'paheal', 'porn', 'dick', 'cum', 'smut', '+18', 'blushmallet', 'diarrhea', 'nightcrawler', 'dakimakura', 'bodypillow', '🔞', 'digestion', 'maid', 'bunny', 'feizao', 'notive', 'explicit', 'r34', 'diaper', 'r64'];
 
     // The result's are ALRIGHT thing.
     const overlay = document.createElement('div');
@@ -92,6 +94,28 @@ Now i'm going to watch Murder Drones.
     overlay.style.zIndex = '1000';
     overlay.style.fontSize = '30px';
     overlay.textContent = "The result's are ALRIGHT.";
+
+    const topbad = document.createElement('div');
+    topbad.style.position = 'fixed';
+    topbad.style.bottom = '10px';
+    topbad.style.right = '10px';
+    topbad.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    topbad.style.color = 'white';
+    topbad.style.padding = '5px';
+    topbad.style.borderRadius = '5px';
+    topbad.style.zIndex = '1000';
+    topbad.style.fontSize = '25px';
+
+    const topawful = document.createElement('div');
+    topawful.style.position = 'fixed';
+    topawful.style.bottom = '100px';
+    topawful.style.right = '10px';
+    topawful.style.backgroundColor = 'rgba(150, 0, 0, 0.7)';
+    topawful.style.color = 'white';
+    topawful.style.padding = '15px';
+    topawful.style.borderRadius = '5px';
+    topawful.style.zIndex = '1000';
+    topawful.style.fontSize = '25px';
 
     /*
     Song 1: Hair Scare - Parappa 2
@@ -150,6 +174,12 @@ Now i'm going to watch Murder Drones.
     };
 
     document.body.appendChild(overlay);
+
+    if (detectedOverlay) {
+        document.body.appendChild(topawful);
+        document.body.appendChild(topbad);
+
+    }
 
     function isVisible(element) {
         const rect = element.getBoundingClientRect();
@@ -224,6 +254,8 @@ Now i'm going to watch Murder Drones.
         totalScore = score1 + score2;
         console.log(detect1);
         console.log(detect2);
+        topbad.textContent = detect1;
+        topawful.textContent = detect2;
         console.log(totalScore);
         if (totalScore > 14) {
             ms = -1;
