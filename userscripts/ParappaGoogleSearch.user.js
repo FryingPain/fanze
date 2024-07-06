@@ -2,7 +2,7 @@
 // @name         Parappa Google Search
 // @namespace    https://www.fryingpain.com
 // @homepage     https://www.fryingpain.com/userscripts/
-// @version      2.0.0
+// @version      2.0.1
 // @description  Search images. now in parappa style!
 // @author       FryingPain & AI :3
 // @match        *://www.google.com/search*
@@ -154,13 +154,24 @@ Now i'm going to watch Murder Drones.
     thumb.style.width = '70px';
     thumb.src = ''
 
-    const gettbw = document.createElement('video');
-    gettbw.style.position = 'fixed';
-    gettbw.style.top = '0px';
-    gettbw.style.left = '0px';
-    gettbw.style.width = '100%';
-    gettbw.style.height = '100%';
-    gettbw.src = 'https://www.fryingpain.com/assets/parappa/gettingBetter.mp4'
+    // Needed to repeat this because of stupid preloading shit. Takes forever to load the videos when displayed.
+    // Hope there is a better way, if find one, i'll fix it.
+
+    const gettbv = document.createElement('video');
+    gettbv.style.position = 'fixed';
+    gettbv.style.top = '0px';
+    gettbv.style.left = '0px';
+    gettbv.style.width = '100%';
+    gettbv.style.height = '100%';
+    gettbv.src = 'https://www.fryingpain.com/assets/parappa/gettingBetter.mp4'
+
+    const gettwv = document.createElement('video');
+    gettwv.style.position = 'fixed';
+    gettwv.style.top = '0px';
+    gettwv.style.left = '0px';
+    gettwv.style.width = '100%';
+    gettwv.style.height = '100%';
+    gettwv.src = 'https://www.fryingpain.com/assets/parappa/gettingWorse.mp4'
 
     const increase = document.createElement('audio');
     increase.src = 'https://www.fryingpain.com/assets/parappa/getting_better.wav';
@@ -277,24 +288,32 @@ Now i'm going to watch Murder Drones.
             increase.currentTime = 0;
             increase.play();
             thumb.src = 'https://www.fryingpain.com/assets/parappa/thumbup.gif';
-            gettbw.src = 'https://www.fryingpain.com/assets/parappa/gettingBetter.mp4'
         } else {
             decrease.currentTime = 0;
             decrease.play();
             thumb.src = 'https://www.fryingpain.com/assets/parappa/thumbdown.gif';
-            gettbw.src = 'https://www.fryingpain.com/assets/parappa/gettingWorse.mp4'
         }
 
         if (TakoyamaJumpscare){
-            document.body.appendChild(gettbw);
-            gettbw.currentTime = 0;
-            gettbw.play();
+            if (statn > statbef) {
+                document.body.appendChild(gettbv);
+                gettbv.currentTime = 0;
+                gettbv.play();
+            } else {
+                document.body.appendChild(gettwv);
+                gettwv.currentTime = 0;
+                gettwv.play();
+            }
             if (autoscroll) {
                 clearInterval(intervalId);
                 clearInterval(updateChartIn);
             }
             setTimeout(function() {
-                document.body.removeChild(gettbw);
+                if (statn > statbef) { // This sucks but idc as long as it works
+                    document.body.removeChild(gettbv);
+                } else {
+                    document.body.removeChild(gettwv);
+                }
                 vars[stat].volume = 0.5;
                 if (autoscroll) {
                     updateChartIn = setInterval(updateChart, 1000);
