@@ -2,7 +2,7 @@
 // @name         Parappa Google Search
 // @namespace    https://www.fryingpain.com
 // @homepage     https://www.fryingpain.com/userscripts/
-// @version      2.0.1
+// @version      2.1.0
 // @description  Search images. now in parappa style!
 // @author       FryingPain & AI :3
 // @match        *://www.google.com/search*
@@ -13,7 +13,7 @@
 
 /*
 
-HUGE UPDATE: new GUI and new songs and more...
+update: You can now fall below "awful", thus ending the round. Toggle it on line 79.
 
  IMPORTANT: THIS MAY NOT WORK ON CHROMIUM BASED BROWSERS!
 
@@ -35,7 +35,8 @@ Depending on the final score, it's what the grading is.
 <-10 : COOL
 -6 - 4: ALRIGHT
 4-14: BAD
-14>: AWFUL
+14-60: AWFUL
+60>: END ROUND (toggable)
 
 ˜”*°•.˜”*°• HOW TO USE •°*”˜.•°*”˜
 
@@ -75,6 +76,7 @@ Now i'm going to watch Murder Drones.
 
     const detectedOverlay = false; // Set to TRUE to see an overlay of the detected words. (You can also see the words on the console.)
     const TakoyamaJumpscare = false; // Takoyama's Getting Better/Worse when changing ranks.
+    const belAwful = false; // Allows falling below "awful", thus ending the run.
 
     /* ˜”*°•.˜”*°• TRIGGER WORDS •°*”˜.•°*”˜
 
@@ -172,6 +174,14 @@ Now i'm going to watch Murder Drones.
     gettwv.style.width = '100%';
     gettwv.style.height = '100%';
     gettwv.src = 'https://www.fryingpain.com/assets/parappa/gettingWorse.mp4'
+
+    const thatwasBAD = document.createElement('video');
+    thatwasBAD.style.position = 'fixed';
+    thatwasBAD.style.top = '0px';
+    thatwasBAD.style.left = '0px';
+    thatwasBAD.style.width = '100%';
+    thatwasBAD.style.height = '100%';
+    thatwasBAD.src = 'https://www.fryingpain.com/assets/parappa/death.mp4'
 
     const increase = document.createElement('audio');
     increase.src = 'https://www.fryingpain.com/assets/parappa/getting_better.wav';
@@ -369,7 +379,32 @@ Now i'm going to watch Murder Drones.
         topbad.textContent = detect1;
         topawful.textContent = detect2;
         console.log(totalScore);
-        if (totalScore > 14) {
+        if (totalScore > 60 && belAwful) {
+            if (stat !== "off") {
+                stat = "off";
+                document.body.appendChild(thatwasBAD);
+                thatwasBAD.currentTime = 0;
+                thatwasBAD.play();
+                stopthething(11000);
+                setTimeout(function() {
+                    if (confirm("TRY AGAIN?")) {
+                        location.reload();
+                    }
+                },11100)
+            } else if (ms === 0) {
+                dbad.play();
+            } else if (ms === 1) {
+                dgood.play();
+            }
+            ms = -1;
+        } else if (totalScore > 50 && belAwful) {
+            if (stat === "awful") {
+                if (ms !== 1) {
+                    ms = 1;
+                    dbad.play();
+                }
+            }
+        } else if (totalScore > 14) {
             // overlay.textContent = "The result's are AWFUL."
             if (stat !== "awful") {
                 stat = "awful";
@@ -550,16 +585,13 @@ Now i'm going to watch Murder Drones.
     let intervalId
     let updateChartIn
 
-    
-
-    // Function to stop the interval when Q is pressed
-    function stopFunction(event) {
-        if (event.key === 'q' || event.key === 'Q') {
-            window.removeEventListener('load', detectWords);
+    function stopthething(messdelay) {
+        window.removeEventListener('load', detectWords);
             window.removeEventListener('scroll', detectWords);
             window.removeEventListener('resize', detectWords);
             clearInterval(intervalId);
             clearInterval(updateChartIn);
+            overlay.src = 'https://www.fryingpain.com/assets/parappa/grade/off0.gif';
             shutoff.play();
             if (autoscroll) {
                 loopWithDelay(50, 1, 1);
@@ -567,7 +599,7 @@ Now i'm going to watch Murder Drones.
                     if (confirm("Open the chart?")) {
                         window.open(downloadChart());
                     };
-                }, 700);
+                }, messdelay);
             };
             setTimeout(function() {
                 // overlay.textContent = "SCRIPT TERMINATED. F5"
@@ -580,6 +612,11 @@ Now i'm going to watch Murder Drones.
             }, 450);
 
             document.removeEventListener('keydown', stopFunction);
+    }
+    // Function to stop the interval when Q is pressed
+    function stopFunction(event) {
+        if (event.key === 'q' || event.key === 'Q') {
+            stopthething(700);
         } else if ((event.key === 'e' || event.key === 'E') && (autoscroll === false)) {
             autoscroll = true;
             starter.play();
