@@ -2,7 +2,7 @@
 // @name         Parappa Google Search
 // @namespace    https://www.fryingpain.com
 // @homepage     https://www.fryingpain.com/userscripts/
-// @version      2.1.0
+// @version      2.1.1
 // @description  Search images. now in parappa style!
 // @author       FryingPain & AI :3
 // @match        *://www.google.com/search*
@@ -35,8 +35,8 @@ Depending on the final score, it's what the grading is.
 <-10 : COOL
 -6 - 4: ALRIGHT
 4-14: BAD
-14-60: AWFUL
-60>: END ROUND (toggable)
+14-50: AWFUL
+50>: END ROUND (toggable)
 
 ˜”*°•.˜”*°• HOW TO USE •°*”˜.•°*”˜
 
@@ -379,7 +379,7 @@ Now i'm going to watch Murder Drones.
         topbad.textContent = detect1;
         topawful.textContent = detect2;
         console.log(totalScore);
-        if (totalScore > 60 && belAwful) {
+        if (totalScore > 50 && belAwful) {
             if (stat !== "off") {
                 stat = "off";
                 document.body.appendChild(thatwasBAD);
@@ -397,7 +397,7 @@ Now i'm going to watch Murder Drones.
                 dgood.play();
             }
             ms = -1;
-        } else if (totalScore > 50 && belAwful) {
+        } else if (totalScore > 40 && belAwful) {
             if (stat === "awful") {
                 if (ms !== 1) {
                     ms = 1;
@@ -558,7 +558,7 @@ Now i'm going to watch Murder Drones.
                             position: "right",
                             ticks: {
                                 min: 0,
-                                max: 40,
+                                max: 50,
                                 suggestedMax: 15,
                                 stepSize: 2
                             }
