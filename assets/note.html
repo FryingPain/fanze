@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DEAR KLAYMENN</title>
+  <style>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("./note.png") no-repeat center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  color: black;
+  font-family: Arial, sans-serif;
+}
+
+#messageDisplay {
+  position: relative;
+  margin: auto;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+  </style>
+</head>
+<body>
+  <div id="messageDisplay"></div>
+
+  <script>
+    window.onload = function() {
+      // Get the URL parameters
+      const params = new URLSearchParams(window.location.search);
+      
+      // Get the 'message' parameter
+      const message = params.get('message');
+	  const user = params.get('user');
+      
+      // Display the message in the popup
+      document.getElementById('messageDisplay').innerText = "Dear Klaymen,\n\n" + message + "\n\nLove " + user;
+    }
+  </script>
+</body>
+</html>

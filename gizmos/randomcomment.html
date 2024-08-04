@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random R34 Comment.</title>
+  <link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
+</head>
+<body>
+  <img id="back" src="https://www.fryingpain.com/assets/back.png" alt="Go back to Gizmos" onclick="window.location.href = '/gizmos/'" style="width:64px;">
+  <h1>Random R34 Comment.</h1>
+  <p>Input a search and it'll find a random comment.<br>Sorry but i just like Neverhood even tho i just played it for the first time lmfao</p>
+  <p><b>Warning:</b> Results may be the most degen thing, or the funniest crap you'll ever see today.<br>Popups also have to be allowed for this site, if prompted, allow popups.</p>
+  <br><br>
+  <label for="inputField">Enter a search term:</label>
+  <input type="text" id="inputField" placeholder="">
+  <button id="button" onclick="find()">Submit</button>
+
+  <p id="response"></p>
+  <img style="display: none;" id="gif" src="../assets/sharing.gif"></img>
+  
+  <audio id="bgm" loop><source src="https://eta.vgmtreasurechest.com/soundtracks/neverhood-songs-deluxe/kzdlcinzjt/14.%20Dum%20Da%20Dum%20Doi%20Doi.mp3" type="audio/mp3"></audio>
+  <script>
+	function openPopup(message, creator) {
+    // URL of the new window (popup)
+    const popupUrl = "../assets/note.html?message=" + encodeURIComponent(message) + "&user=" + encodeURIComponent(creator);
+
+    // Open a new window with specified URL, width, and height
+    window.open(popupUrl, "_blank", "width=640,height=480");
+}
+
+async function find() {
+    const button = document.getElementById("button");
+    const inputField = document.getElementById("inputField");
+    const responseParagraph = document.getElementById("response");
+    const bgm = document.getElementById("bgm");
+    const tags = inputField.value;
+    document.getElementById("gif").style.display = "block";
+    responseParagraph.textContent = "Searching..."
+    button.disabled = true;
+    inputField.disabled = true;
+
+    bgm.pause();
+    bgm.currentTime = 0;
+    var posts = 0;
+    var length = 0;
+    var attempts = 0;
+    API = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags}&limit=1000&pid=0&json=1`;
+    const responser = await fetch(API);
+    try {
+
+        data = await responser.json();
+    } catch (error) {
+        responseParagraph.textContent = `Error trying to fetch posts... 3:`;
+        button.disabled = false;
+        inputField.disabled = false;
+    }
+
+    if (data.length === 0) {
+        responseParagraph.textContent = "No posts found.";
+    } else {
+        var item = data[Math.floor(Math.random() * data.length)];
+        const responser2 = await fetch(`https://api.rule34.xxx/index.php?page=dapi&s=comment&q=index&post_id=${item.id}`);
+        try {
+            commentss = await responser2.text();
+        } catch (error) {
+            responseParagraph.textContent = error;
+            button.disabled = false;
+            inputField.disabled = false;
+            return
+        }
+
+        console.log(commentss);
+        if (commentss === '<?xml version="1.0" encoding="UTF-8"?><comments type="array"/>') {
+            attempts++;
+            responseParagraph.textContent = `Searching... (Attempt ${attempts})`;
+            find();
+            return;
+        };
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(commentss, "application/xml");
+        const comments = xmlDoc.getElementsByTagName("comment");
+        const randomIndex = Math.floor(Math.random() * comments.length);
+        const randomComment = comments[randomIndex];
+        const body = randomComment.getAttribute("body");
+        const creator = randomComment.getAttribute("creator");
+
+        responseParagraph.textContent = "Success.";
+        console.log(body);
+        bgm.play()
+        openPopup(body, creator);
+    }
+
+    button.disabled = false;
+    inputField.disabled = false;
+    document.getElementById("gif").style.display = "none";
+}
+  </script>
+</body>
+</html>
