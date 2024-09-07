@@ -79,7 +79,7 @@ display: inline;
 
 
 body {
-  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('background.png');
+  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('birthday.jpg');
   background-size: cover;
   background-attachment: fixed;
 }
