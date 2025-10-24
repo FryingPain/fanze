@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<link rel="shortcut icon" href="https://www.fryingpain.com/assets/favicon.png" type="image/x-icon">
 	<title>FryingPain</title>
@@ -13,16 +14,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="language" content="English">
 	<meta name="revisit-after" content="3 days">
+	<script src="/assets/cursor.js"></script>
 </head>
+
 <body>
+	<iframe id="Topbar" src="/header.html" style="position: fixed; top:0px; width: 100%; height:10vh; overflow: hidden;"
+		scrolling="no" frameborder="0"></iframe>
+	<br><br>
 	<div class="overlay">
-		<h1>FryingPain.</h1>
-		<rainbow>2 years of FryingPain.com!</rainbow>
-		<p>And to celebrate the 2 years of fryingpain.com, i'll soon be giving the website a brand new look... Stay
-			tuned...</p>
+		<br>
+		<h1>FryingPain.</h1><br>
+		<rainbow>New look part 1!</rainbow>
 		<h2>wha' -thelanber 2023</h2>
+		<p>This website is NOT made for phones and i'm proud about it.</p>
 		<p>www Repo Size: <span id="size">Loading...</span> MB</p>
-		<h2>New style! Don't like it? <a href="oldindex.html">Return to the old style.</a></h2>
+		<!-- <h2>New style! Don't like it? <a href="oldindex.html">Return to the old style.</a></h2> -->
 		<p>Checkout the spooky server side!</p>
 		<a class="button" href='https://server.fryingpain.com'>server.fryingpain.com</a><br>
 		<p>Welcome to my personal site!<br>I originally made this website for a little lomando-like game, but i ever
@@ -36,7 +42,6 @@
 		<div class="buttons">
 			<a class="button" href='/gizmos/'>Gizmos</a>
 			<a class="button" href='/assets/'>Assets</a>
-			<a class="button" href='/games/'>Games</a>
 		</div>
 		<h1>Contact</h1>
 		<p>Here's some of my social media.<br>I may remove this in favor of a carrd or something like that. Y'know, so
@@ -78,6 +83,12 @@
 		<img alt="Timber's Son" src='./assets/TimberSon.png' style="width: 350px;">
 	</div>
 	<script>
+
+		document.getElementById('Topbar').onload = function () {
+			var iframe = document.getElementById('Topbar');
+			iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+		};
+
 		function convertKBtoMB(sizeInKB) {
 			return (sizeInKB / 1000).toFixed(2);
 		}
@@ -96,4 +107,5 @@
 			});
 	</script>
 </body>
+
 </html>

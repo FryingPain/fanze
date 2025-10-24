@@ -22,8 +22,20 @@
             padding: 0;
             margin: 0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            height: 45px;
+            overflow: hidden;
+            /* animation: slideIn 0.5s forwards; */
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-100%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
         }
 
         .top-bar a {
@@ -31,6 +43,7 @@
             color: #5f6ae3;
             text-decoration: none;
             margin-left: 10px;
+            top: 0px;
             display: inline-block;
         }
 
@@ -50,10 +63,11 @@
             color: #111;
             display: inline-block;
         }
+
         .button {
             width: auto;
             /* background: linear-gradient(to bottom, #d46000 5%, #440000 100%); */
-            background-image: url(./assets/glowbutton.png);
+            background-image: url(./assets/glowbutton2.png);
             background-repeat: no-repeat;
             background-size: 100% 100%;
             display: inline-block;
@@ -62,7 +76,7 @@
             font-family: Arial;
             font-size: 28px;
             font-weight: bold;
-            padding: 10px 30px;
+            padding: 7px 2%;
             text-decoration: none;
             text-shadow: 0px 1px 0px #a1a1a1;
             margin: 0;
@@ -76,7 +90,7 @@
         }
 
         .button:active {
-            background-color: #fff;
+            background-color: #888;
             position: relative;
             /* top: 1px; */
         }
@@ -144,16 +158,36 @@
 
 <body>
     <div class="top-bar">
-        <div>
-            <span>
-                <img src="/assets/">
-            </span>
-            <a style="display: inline-block; margin: 0;" class="button" href="/gizmos/">Gizmos</a><!--
-            --><a style="display: inline-block; margin: 0;" class="button" href="/assets/">Assets</a><!--
-            --><a style="display: inline-block; margin: 0;" class="button" href="https://www.roblox.com/users/254334857/profile">Roblox</a><!--
+        <div style="height: 100%;">
+            <a style="display: inline-block; margin: 0;" href="/" target="_top">
+                <img style="object-fit: cover; height: 100%; display: inline-block; margin: 0; min-width: 85%; max-width: 100%;"
+                    src="/assets/logoshrink.gif">
+            </a>
+        </div>
+        <div style="width: 10px; background: linear-gradient(to bottom, #000000 50%, #2b2b2b 100%); height: 100%;">
+        </div>
+        <a style="display: inline-block; margin: 0;" class="button" href="/gizmos/" target="_top">Gizmos</a><!--
+            --><a style="display: inline-block; margin: 0;" class="button" href="/assets/" target="_top">Assets</a><!--
+            --><a style="display: inline-block; margin: 0;" class="button" href="https://www.roblox.com/users/254334857/profile" target="_top">Roblox</a><!--
+            --><a style="display: inline-block; margin: 0;" class="button" href="https://fryingpain.straw.page" target="_top">Strawpage</a><!--
+            --><a style="display: inline-block; margin: 0;" class="button" href="https://pronouns.cc/@FryingPain" target="_top">pronouns.cc</a><!--
             -->
+        <!--<script async src="https://cse.google.com/cse.js?cx=02df662d5ee85452c">
+        </script>
+        <div class="gcse-search"></div>-->
+        <div style="position: absolute; justify-content: flex-end; right:50px">
+            <input type="checkbox" name="Flag" id="Flag">
+            <label for="Flag">Flag</label>
         </div>
     </div>
+    <script>
+        const flag = document.getElementById("Flag");
+        flag.checked = localStorage.getItem("flagenabled") == "true";
+        flag.addEventListener("change", function () {
+            localStorage.setItem("flagenabled", flag.checked);
+            window.top.location.reload();
+        });
+    </script>
     <!-- <script src="splash.js"></script> -->
 </body>
 
