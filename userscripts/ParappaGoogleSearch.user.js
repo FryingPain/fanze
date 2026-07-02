@@ -2,7 +2,7 @@
 // @name         Parappa Google Search
 // @namespace    https://www.fryingpain.com
 // @homepage     https://www.fryingpain.com/userscripts/
-// @version      2.1.1
+// @version      3.0.0
 // @description  Search images. now in parappa style!
 // @author       FryingPain & AI :3
 // @match        *://www.google.com/search*
@@ -38,6 +38,7 @@ Depending on the final score, it's what the grading is.
 14-50: AWFUL
 50>: END ROUND (toggable)
 
+
 ˜”*°•.˜”*°• HOW TO USE •°*”˜.•°*”˜
 
 After changing all you needed to change, do a search on Google (made for Images better), and let the fun begin!
@@ -55,6 +56,13 @@ I made up a picture of how to read the chart.
 https://www.fryingpain.com/assets/parappa/chart.png
 
 UPDATE: STATUS 3 MEANS COOL (too lazy to change the image)
+
+˜”*°•.˜”*°• HOL' UP... WHY "ALRIGHT" INSTEAD OF "GOOD"? •°*”˜.•°*”˜
+
+Because the system cannot read images, only titles, there may be a possibility that
+bad images go undetected.
+Thus, "ALRIGHT" sounds more applicable rather than "GOOD"
+
 
 ˜”*°•.˜”*°• HOW TO GET COOL •°*”˜.•°*”˜
 
@@ -74,9 +82,9 @@ Now i'm going to watch Murder Drones.
         return Math.floor(Math.random() * max);
     }
 
-    const detectedOverlay = false; // Set to TRUE to see an overlay of the detected words. (You can also see the words on the console.)
-    const TakoyamaJumpscare = false; // Takoyama's Getting Better/Worse when changing ranks.
-    const belAwful = false; // Allows falling below "awful", thus ending the run.
+    const detectedOverlay = true; // Set to TRUE to see an overlay of the detected words. (You can also see the words on the console.)
+    const TakoyamaJumpscare = true; // Takoyama's Getting Better/Worse when changing ranks.
+    const belAwful = true; // Allows falling below "awful", thus ending the run.
 
     /* ˜”*°•.˜”*°• TRIGGER WORDS •°*”˜.•°*”˜
 
@@ -90,17 +98,18 @@ Now i'm going to watch Murder Drones.
     Important: Words cannot have spaces. (sad.)
     */
     const Trigger1 = ['amor', 'genderswap', 'deviantart', 'furaffinity', 'affinity', 'wattpad', 'love', 'fat', 'goo', 'changed', 'suggestive', 'yaoi', 'yuri', 'lumity', 'rupphire'];
-    const Trigger2 = ['7w7', '7u7', 'r63', 'chubby', 'R18', 'fluff', 'rule', 'hentai', 'nsfw', 'cheeks', 'boozy' /*Fuck you enthuziastic. */ , 'fart', 'toot', 'feet', 'foot', 'vorarephilia', 'vore', 'inflation', 'scat', 'rule34', 'paheal', 'porn', 'dick', 'cum', 'smut', '+18', 'blushmallet', 'diarrhea', 'nightcrawler', 'dakimakura', 'bodypillow', '🔞', 'digestion', 'maid', 'bunny', 'feizao', 'notive', 'explicit', 'r34', 'diaper', 'r64'];
-    const adorable = ['cat', 'dog', 'kitty'];
+    const Trigger2 = ['sus','13+','vrchat','sex', 'gore', '7w7', '7u7', 'r63', 'chubby', 'R18', 'fluff', 'rule', 'hentai', 'nsfw', 'cheeks', 'boozy' /*Fuck you enthuziastic. */ , 'fart', 'toot', 'feet', 'foot', 'vorarephilia', 'vore', 'inflation', 'scat', 'rule34', 'paheal', 'porn', 'dick', 'cum', 'smut', '+18', 'blushmallet', 'diarrhea', 'nightcrawler', 'dakimakura', 'bodypillow', '🔞', 'digestion', 'maid', 'bunny', 'feizao', 'notive', 'explicit', 'r34', 'diaper', 'r64'];
+    const adorable = ['cat', 'dog', 'kitty', 'otter'];
 
     /*
     Song 1: Hair Scare - Parappa 2
     Song 2: Instructor Mooselini's RAP - Parappa 1
     Song 3: Chop Chop Master Onion's Rap (this one has lyrics) - Parappa 1
     Song 4: Toasty Buns - Parappa 2
+    Song 5: Noodles can't be beat - Parappa 2
 	You can comment the code and make it force a song.
     */
-    const song = 1 + random(4);
+    const song = 1; //1 + random(4);
 
     // Keep these the same, unless you wanna change it's behavior...
 
@@ -156,6 +165,30 @@ Now i'm going to watch Murder Drones.
     thumb.style.width = '70px';
     thumb.src = ''
 
+    const gauge1 = document.createElement('img');
+    gauge1.style.position = 'fixed';
+    gauge1.style.bottom = '0px';
+    gauge1.style.right = '0%';
+    gauge1.style.width = '150px';
+    gauge1.style.zIndex = 5;
+    gauge1.src = 'https://www.fryingpain.com/assets/parappa/gauges/adorable/dec2.gif'
+
+    const gauge2 = document.createElement('img');
+    gauge2.style.position = 'fixed';
+    gauge2.style.bottom = '0px';
+    gauge2.style.right = '10%';
+    gauge2.style.width = '150px';
+    gauge2.style.zIndex = 5;
+    gauge2.src = 'https://www.fryingpain.com/assets/parappa/gauges/regular/dec2.gif'
+
+    const gauge3 = document.createElement('img');
+    gauge3.style.position = 'fixed';
+    gauge3.style.bottom = '0px';
+    gauge3.style.right = '20%';
+    gauge3.style.width = '150px';
+    gauge3.style.zIndex = 5;
+    gauge3.src = 'https://www.fryingpain.com/assets/parappa/gauges/explicit/dec2.gif'
+
     // Needed to repeat this because of stupid preloading shit. Takes forever to load the videos when displayed.
     // Hope there is a better way, if find one, i'll fix it.
 
@@ -165,7 +198,7 @@ Now i'm going to watch Murder Drones.
     gettbv.style.left = '0px';
     gettbv.style.width = '100%';
     gettbv.style.height = '100%';
-    gettbv.src = 'https://www.fryingpain.com/assets/parappa/gettingBetter.mp4'
+    gettbv.src = 'https://www.fryingpain.com/assets/parappa/gettingBetter2.mp4'
 
     const gettwv = document.createElement('video');
     gettwv.style.position = 'fixed';
@@ -173,7 +206,7 @@ Now i'm going to watch Murder Drones.
     gettwv.style.left = '0px';
     gettwv.style.width = '100%';
     gettwv.style.height = '100%';
-    gettwv.src = 'https://www.fryingpain.com/assets/parappa/gettingWorse.mp4'
+    gettwv.src = 'https://www.fryingpain.com/assets/parappa/gettingWorse2.mp4'
 
     const thatwasBAD = document.createElement('video');
     thatwasBAD.style.position = 'fixed';
@@ -243,8 +276,69 @@ Now i'm going to watch Murder Drones.
         awful: awful
     };
 
+    const getOverlay = document.createElement('div');
+    getOverlay.style.position = 'fixed';
+    getOverlay.style.top = '0';
+    getOverlay.style.left = '0';
+    getOverlay.style.width = '100%';
+    getOverlay.style.height = '100%';
+    getOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Transparent black
+    getOverlay.style.zIndex = '1000'; // Ensure it appears on top
+    getOverlay.style.display = 'flex';
+    getOverlay.style.flexDirection = 'column';
+    getOverlay.style.alignItems = 'center';
+    getOverlay.style.justifyContent = 'center';
+    getOverlay.style.color = 'white';
+    getOverlay.style.padding = '20px';
+    // Create the header
+    const header = document.createElement('h1');
+    header.innerText = 'Getting Worse';
+    header.style.marginBottom = '20px';
+    header.style.fontSize = '100px';
+    getOverlay.appendChild(header);
+
+    // Create paragraph elements with differently colored numbers
+    const p1 = document.createElement('p');
+    p1.innerHTML = 'Explicit Count: <span style="color: red;">0</span>';
+    p1.style.marginBottom = '10px';
+    p1.style.fontSize = '30px';
+    getOverlay.appendChild(p1);
+
+    const p2 = document.createElement('p');
+    p2.innerHTML = 'Regular Count: <span style="color: cyan;">1</span>';
+    p2.style.marginBottom = '5px';
+    p2.style.fontSize = '30px';
+    getOverlay.appendChild(p2);
+
+    const p3 = document.createElement('p');
+    p3.innerHTML = 'Adorable Count: <span style="color: lime;">2</span>';
+    p3.style.marginBottom = '5px';
+    p3.style.fontSize = '30px';
+    getOverlay.appendChild(p3);
+
+    const p4 = document.createElement('p');
+    p4.innerHTML = 'Total Count: <span style="color: orange;">2</span>';
+    p4.style.marginBottom = '5px';
+    p4.style.fontSize = '30px';
+    getOverlay.appendChild(p4);
+
+    const p5 = document.createElement('p');
+    p5.innerHTML = 'Chart so far:';
+    p5.style.marginBottom = '5px';
+    p5.style.fontSize = '30px';
+
+    // Add an image
+    const img = document.createElement('img');
+    img.alt = 'Overlay Image';
+    img.style.width = "25%";
+    img.style.marginTop = '20px';
+
     document.body.appendChild(overlay);
     document.body.appendChild(thumb);
+
+    document.body.appendChild(gauge1);
+    document.body.appendChild(gauge2);
+    document.body.appendChild(gauge3);
 
     if (detectedOverlay) {
         document.body.appendChild(topawful);
@@ -252,17 +346,57 @@ Now i'm going to watch Murder Drones.
 
     }
 
+    function shortenArray(arr) {
+    const countMap = {};
+    arr.forEach(item => {
+        countMap[item] = (countMap[item] || 0) + 1;
+    });
+    const result = Object.entries(countMap)
+        .map(([item, count]) => `${item} x${count}`)
+        .join(' ');
+
+    return result;
+}
+
+    function GettingOverlayeh(HeaderT) {
+        img.style.width = "5%";
+        // img.src = "https://media.tenor.com/V0vzeHv6LbwAAAAi/windows-loandig-cargando.gif";
+        header.innerText = HeaderT;
+        document.body.appendChild(getOverlay);
+        getOverlay.appendChild(p5);
+        getOverlay.appendChild(img);
+
+        p1.innerHTML = 'Explicit Points: <span style="color: red;">'+ score2 +'</span>' + ' ( ' + shortenArray(detect2) + ' )';
+        p2.innerHTML = 'Regular Points: <span style="color: cyan;">'+ score1 +'</span>' + ' ( ' + shortenArray(detect1) + ' )';
+        p3.innerHTML = 'Adorable Points: <span style="color: lime;">'+ score3 +'</span>' + ' ( ' + shortenArray(detect3) + ' )';
+        p4.innerHTML = 'Total Points: <span style="color: orange;">' + totalScore + '</span>';
+
+
+        if (autoscroll) {
+            img.src = downloadChart();
+            img.style.width = "25%";
+        } else {
+             getOverlay.removeChild(p5);
+             getOverlay.removeChild(img);
+        }
+
+        setTimeout(function() {
+            document.body.removeChild(getOverlay);
+        }, 2300);
+    }
+
+
     function isVisible(element) {
         const rect = element.getBoundingClientRect();
         return (rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth));
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth));
     }
 
     function getVisibleText() {
         const visibleText = [];
-        const elements = document.querySelectorAll('div.toI8Rb.OSrXXb, div.guK3rf.cHaqb');
+        const elements = document.querySelectorAll('div.Q6A6Dc.ddBkwd, div.VYhLad.q66j');
 
         elements.forEach(element => {
             if (isVisible(element) && element.textContent.trim().length > 0) {
@@ -271,6 +405,74 @@ Now i'm going to watch Murder Drones.
         });
 
         return visibleText.join(' ');
+    }
+
+    let score1 = 0;
+    let score2 = 0;
+    let score3 = 0;
+    let detect1 = [];
+    let detect2 = [];
+    let detect3 = [];
+
+    let olds1 = 0;
+    let olds2 = 0;
+    let olds3 = 0;
+
+    let oms = 0;
+
+    let upclsb = 0;
+    function updcl(ovr) {
+        if ((oms === ms) && !ovr) {
+            return;
+        }
+        oms = ms;
+
+        if (score3 > olds3) {
+            if (score3 - olds3 > 3) {
+                gauge1.src = 'https://www.fryingpain.com/assets/parappa/gauges/adorable/inc2.gif';
+            } else {
+                gauge1.src = 'https://www.fryingpain.com/assets/parappa/gauges/adorable/inc1.gif';
+            }
+        } else {
+            if (olds3 - score3 > 3) {
+                gauge1.src = 'https://www.fryingpain.com/assets/parappa/gauges/adorable/dec2.gif';
+            } else {
+                gauge1.src = 'https://www.fryingpain.com/assets/parappa/gauges/adorable/dec1.gif';
+            }
+        }
+
+        if (score1 > olds1) {
+            if (score1 - olds1 > 5) {
+                gauge2.src = 'https://www.fryingpain.com/assets/parappa/gauges/regular/dec2.gif';
+            } else {
+                gauge2.src = 'https://www.fryingpain.com/assets/parappa/gauges/regular/dec1.gif';
+            }
+        } else {
+            if (olds1 - score1 > 5) { // Adjust the threshold value as needed
+                gauge2.src = 'https://www.fryingpain.com/assets/parappa/gauges/regular/inc2.gif';
+            } else {
+                gauge2.src = 'https://www.fryingpain.com/assets/parappa/gauges/regular/inc1.gif';
+            }
+        }
+
+        if (score2 > olds2) {
+            if (score2 - olds2 > 10) {
+                gauge3.src = 'https://www.fryingpain.com/assets/parappa/gauges/explicit/dec2.gif';
+            } else {
+                gauge3.src = 'https://www.fryingpain.com/assets/parappa/gauges/explicit/dec1.gif';
+            }
+        } else {
+            if (olds2 - score2 > 10) {
+                gauge3.src = 'https://www.fryingpain.com/assets/parappa/gauges/explicit/inc2.gif';
+            } else {
+                gauge3.src = 'https://www.fryingpain.com/assets/parappa/gauges/explicit/inc1.gif';
+            }
+        }
+
+
+        olds1 = score1;
+        olds2 = score2;
+        olds3 = score3;
     }
 
     function mus(newValue) {
@@ -287,10 +489,13 @@ Now i'm going to watch Murder Drones.
         // bad.currentTime = alright.currentTime;
         // awful.currentTime = alright.currentTime;
 
+
+
         if (newValue === statn) {
             return;
         }
 
+        updcl(true);
         statbef = statn;
         statn = newValue;
 
@@ -298,21 +503,25 @@ Now i'm going to watch Murder Drones.
             increase.currentTime = 0;
             increase.play();
             thumb.src = 'https://www.fryingpain.com/assets/parappa/thumbup.gif';
+
         } else {
             decrease.currentTime = 0;
             decrease.play();
             thumb.src = 'https://www.fryingpain.com/assets/parappa/thumbdown.gif';
+
         }
 
-        if (TakoyamaJumpscare){
+        if (TakoyamaJumpscare) {
             if (statn > statbef) {
                 document.body.appendChild(gettbv);
                 gettbv.currentTime = 0;
                 gettbv.play();
+                GettingOverlayeh("Getting Better");
             } else {
                 document.body.appendChild(gettwv);
                 gettwv.currentTime = 0;
                 gettwv.play();
+                GettingOverlayeh("Getting Worse");
             }
             if (autoscroll) {
                 clearInterval(intervalId);
@@ -340,7 +549,7 @@ Now i'm going to watch Murder Drones.
     }
 
     function scroll() {
-        window.scrollBy(0, 2);
+        window.scrollBy(0, 1);
     }
 
     function detectWords() {
@@ -348,12 +557,12 @@ Now i'm going to watch Murder Drones.
 
         const visibleText = getVisibleText();
         const words = visibleText.match(/\b(\w+)\b/g) || [];
-        let score1 = 0;
-        let score2 = 0;
-        let score3 = 0;
-        let detect1 = [];
-        let detect2 = [];
-        let detect3 = [];
+        score1 = 0;
+        score2 = 0;
+        score3 = 0;
+        detect1 = [];
+        detect2 = [];
+        detect3 = [];
         words.forEach(word => {
             if (Trigger1.includes(word.toLowerCase())) {
                 score1++;
@@ -388,9 +597,9 @@ Now i'm going to watch Murder Drones.
                 stopthething(11000);
                 setTimeout(function() {
                     if (confirm("TRY AGAIN?")) {
-                        location.reload();
+                        window.location.replace("https://images.google.com/");
                     }
-                },11100)
+                }, 11100)
             } else if (ms === 0) {
                 dbad.play();
             } else if (ms === 1) {
@@ -489,6 +698,7 @@ Now i'm going to watch Murder Drones.
             }
             ms = -1;
         }
+        updcl();
         let urlsito = 'https://www.fryingpain.com/assets/parappa/grade/' + stat + (ms + 1) + '.gif';
         if (urlsito !== overlay.src) {
             overlay.src = urlsito;
@@ -524,46 +734,46 @@ Now i'm going to watch Murder Drones.
             data: {
                 labels: cSeconds,
                 datasets: [{
-                        label: "Status",
-                        data: cStatus,
-                        fill: false,
-                        borderColor: "blue",
-                        yAxisID: "y-axis-0"
-                    },
-                    {
-                        label: "Points",
-                        data: cPoints,
-                        fill: true,
-                        borderColor: "red",
-                        yAxisID: "y-axis-1"
-                    }
-                ]
+                    label: "Status",
+                    data: cStatus,
+                    fill: false,
+                    borderColor: "blue",
+                    yAxisID: "y-axis-0"
+                },
+                           {
+                               label: "Points",
+                               data: cPoints,
+                               fill: true,
+                               borderColor: "red",
+                               yAxisID: "y-axis-1"
+                           }
+                          ]
             },
             options: {
                 scales: {
                     yAxes: [{
-                            id: "y-axis-0",
-                            position: "left",
-                            ticks: {
-                                min: 0,
-                                max: 3,
-                                stepSize: 1,
-                                callback: function(value, index, values) {
-                                    return ['AWFUL', 'BAD', 'ALRIGHT','COOL'][value]; // this doesn't work at all lmao
-                                }
-                            }
-                        },
-                        {
-                            id: "y-axis-1",
-                            position: "right",
-                            ticks: {
-                                min: 0,
-                                max: 50,
-                                suggestedMax: 15,
-                                stepSize: 2
+                        id: "y-axis-0",
+                        position: "left",
+                        ticks: {
+                            min: 0,
+                            max: 3,
+                            stepSize: 1,
+                            callback: function(value, index, values) {
+                                return ['AWFUL', 'BAD', 'ALRIGHT', 'COOL'][value]; // this doesn't work at all lmao
                             }
                         }
-                    ]
+                    },
+                            {
+                                id: "y-axis-1",
+                                position: "right",
+                                ticks: {
+                                    min: 0,
+                                    max: 50,
+                                    suggestedMax: 15,
+                                    stepSize: 2
+                                }
+                            }
+                           ]
                 },
                 title: {
                     display: true,
@@ -587,31 +797,31 @@ Now i'm going to watch Murder Drones.
 
     function stopthething(messdelay) {
         window.removeEventListener('load', detectWords);
-            window.removeEventListener('scroll', detectWords);
-            window.removeEventListener('resize', detectWords);
-            clearInterval(intervalId);
-            clearInterval(updateChartIn);
-            overlay.src = 'https://www.fryingpain.com/assets/parappa/grade/off0.gif';
-            shutoff.play();
-            if (autoscroll) {
-                loopWithDelay(50, 1, 1);
-                setTimeout(function() {
-                    if (confirm("Open the chart?")) {
-                        window.open(downloadChart());
-                    };
-                }, messdelay);
-            };
+        window.removeEventListener('scroll', detectWords);
+        window.removeEventListener('resize', detectWords);
+        clearInterval(intervalId);
+        clearInterval(updateChartIn);
+        overlay.src = 'https://www.fryingpain.com/assets/parappa/grade/off0.gif';
+        shutoff.play();
+        if (autoscroll) {
+            loopWithDelay(50, 1, 10);
             setTimeout(function() {
-                // overlay.textContent = "SCRIPT TERMINATED. F5"
-                scrolling.pause();
-                cool.pause();
-                alright.pause();
-                bad.pause();
-                awful.pause();
+                if (confirm("Open the chart?")) {
+                    window.open(downloadChart());
+                };
+            }, messdelay);
+        };
+        setTimeout(function() {
+            // overlay.textContent = "SCRIPT TERMINATED. F5"
+            scrolling.pause();
+            cool.pause();
+            alright.pause();
+            bad.pause();
+            awful.pause();
 
-            }, 450);
+        }, 450);
 
-            document.removeEventListener('keydown', stopFunction);
+        document.removeEventListener('keydown', stopFunction);
     }
     // Function to stop the interval when Q is pressed
     function stopFunction(event) {
